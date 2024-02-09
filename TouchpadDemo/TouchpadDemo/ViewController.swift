@@ -10,10 +10,10 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBAction func Start(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "Touchpad", bundle: nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "Touchpad")
-        self.present(nextViewController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewcontroler = storyboard.instantiateViewController(withIdentifier: "Touchpad")
         
+        self.present(viewcontroler, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
