@@ -14,6 +14,8 @@ class ViewController: UIViewController {
         let viewcontroler = storyboard.instantiateViewController(withIdentifier: "Touchpad")
         
         self.present(viewcontroler, animated: true, completion: nil)
+        
+        
     }
     
     override func viewDidLoad() {

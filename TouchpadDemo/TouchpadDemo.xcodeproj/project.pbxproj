@@ -17,9 +17,9 @@
 		B40BC9AF2B7026B400E8615E /* TouchpadDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BC9AE2B7026B400E8615E /* TouchpadDemoTests.swift */; };
 		B40BC9B92B7026B400E8615E /* TouchpadDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BC9B82B7026B400E8615E /* TouchpadDemoUITests.swift */; };
 		B40BC9BB2B7026B400E8615E /* TouchpadDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BC9BA2B7026B400E8615E /* TouchpadDemoUITestsLaunchTests.swift */; };
-		B4CF813B2B76098C006BF26A /* TouchpadForMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CF813A2B76098C006BF26A /* TouchpadForMac.swift */; };
-		B4CF81802B760E87006BF26A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CF817F2B760E87006BF26A /* Cocoa.framework */; platformFilters = (macos, ); };
 		B4E2BF0C2B71013700976510 /* Touchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2BF0B2B71013700976510 /* Touchpad.swift */; };
+		B4FFEE0D2B78D1D200C25B67 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CF817F2B760E87006BF26A /* Cocoa.framework */; platformFilters = (macos, ); };
+		B4FFEE0E2B78D1D200C25B67 /* Cocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4CF817F2B760E87006BF26A /* Cocoa.framework */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B4FFEE0F2B78D1D200C25B67 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B4FFEE0E2B78D1D200C25B67 /* Cocoa.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B40BC9912B7026B100E8615E /* TouchpadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchpadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40BC9942B7026B100E8615E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +68,6 @@
 		B40BC9B42B7026B400E8615E /* TouchpadDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchpadDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40BC9B82B7026B400E8615E /* TouchpadDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchpadDemoUITests.swift; sourceTree = "<group>"; };
 		B40BC9BA2B7026B400E8615E /* TouchpadDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchpadDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B4CF813A2B76098C006BF26A /* TouchpadForMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchpadForMac.swift; sourceTree = "<group>"; };
 		B4CF813C2B760A99006BF26A /* TouchpadDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouchpadDemo.entitlements; sourceTree = "<group>"; };
 		B4CF817F2B760E87006BF26A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		B4E2BF0B2B71013700976510 /* Touchpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touchpad.swift; sourceTree = "<group>"; };
@@ -65,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4CF81802B760E87006BF26A /* Cocoa.framework in Frameworks */,
+				B4FFEE0D2B78D1D200C25B67 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +133,6 @@
 				B40BC9A52B7026B300E8615E /* Info.plist */,
 				B40BC99D2B7026B100E8615E /* TouchpadDemo.xcdatamodeld */,
 				B4E2BF0B2B71013700976510 /* Touchpad.swift */,
-				B4CF813A2B76098C006BF26A /* TouchpadForMac.swift */,
 			);
 			path = TouchpadDemo;
 			sourceTree = "<group>";
@@ -160,6 +172,7 @@
 				B40BC98D2B7026B100E8615E /* Sources */,
 				B40BC98E2B7026B100E8615E /* Frameworks */,
 				B40BC98F2B7026B100E8615E /* Resources */,
+				B4FFEE0F2B78D1D200C25B67 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -282,7 +295,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B40BC9992B7026B100E8615E /* ViewController.swift in Sources */,
-				B4CF813B2B76098C006BF26A /* TouchpadForMac.swift in Sources */,
 				B40BC9952B7026B100E8615E /* AppDelegate.swift in Sources */,
 				B40BC99F2B7026B100E8615E /* TouchpadDemo.xcdatamodeld in Sources */,
 				B4E2BF0C2B71013700976510 /* Touchpad.swift in Sources */,
