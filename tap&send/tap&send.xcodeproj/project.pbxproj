@@ -16,7 +16,7 @@
 		B4E54F232B924DCE007B75EF /* tap_sendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E54F222B924DCE007B75EF /* tap_sendTests.swift */; };
 		B4E54F2D2B924DCE007B75EF /* tap_sendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E54F2C2B924DCE007B75EF /* tap_sendUITests.swift */; };
 		B4E54F2F2B924DCE007B75EF /* tap_sendUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E54F2E2B924DCE007B75EF /* tap_sendUITestsLaunchTests.swift */; };
-		B4E54F3C2B935CED007B75EF /* ColorMultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E54F3B2B935CED007B75EF /* ColorMultipeerSession.swift */; };
+		B4E54F3C2B935CED007B75EF /* MultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E54F3B2B935CED007B75EF /* MultipeerSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +49,7 @@
 		B4E54F282B924DCE007B75EF /* tap&sendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tap&sendUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E54F2C2B924DCE007B75EF /* tap_sendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITests.swift; sourceTree = "<group>"; };
 		B4E54F2E2B924DCE007B75EF /* tap_sendUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B4E54F3B2B935CED007B75EF /* ColorMultipeerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMultipeerSession.swift; sourceTree = "<group>"; };
+		B4E54F3B2B935CED007B75EF /* MultipeerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 				B4E54F152B924DCE007B75EF /* Persistence.swift */,
 				B4E54F172B924DCE007B75EF /* tap_send.xcdatamodeld */,
 				B4E54F122B924DCE007B75EF /* Preview Content */,
-				B4E54F3B2B935CED007B75EF /* ColorMultipeerSession.swift */,
+				B4E54F3B2B935CED007B75EF /* MultipeerSession.swift */,
 			);
 			path = "tap&send";
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 				B4E54F162B924DCE007B75EF /* Persistence.swift in Sources */,
 				B4E54F0F2B924DCC007B75EF /* ContentView.swift in Sources */,
 				B4E54F0D2B924DCC007B75EF /* tap_sendApp.swift in Sources */,
-				B4E54F3C2B935CED007B75EF /* ColorMultipeerSession.swift in Sources */,
+				B4E54F3C2B935CED007B75EF /* MultipeerSession.swift in Sources */,
 				B4E54F192B924DCE007B75EF /* tap_send.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

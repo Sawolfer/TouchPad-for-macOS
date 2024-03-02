@@ -9,7 +9,7 @@ import Foundation
 import MultipeerConnectivity
 import os
 
-class ColorMultipeerSession: NSObject, ObservableObject {
+class MultipeerSession: NSObject, ObservableObject {
     private let serviceType = "example-color"
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
@@ -38,7 +38,7 @@ class ColorMultipeerSession: NSObject, ObservableObject {
     }
 }
 
-extension ColorMultipeerSession: MCNearbyServiceAdvertiserDelegate {
+extension MultipeerSession: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         log.error("ServiceAdvertiser didNotStartAdvertisingPeer: \(String(describing: error))")
     }
@@ -48,7 +48,7 @@ extension ColorMultipeerSession: MCNearbyServiceAdvertiserDelegate {
     }
 }
 
-extension ColorMultipeerSession: MCNearbyServiceBrowserDelegate {
+extension MultipeerSession: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         log.error("ServiceBrowser didNotStartBrowsingForPeers: \(String(describing: error))")
     }
@@ -62,7 +62,7 @@ extension ColorMultipeerSession: MCNearbyServiceBrowserDelegate {
     }
 }
 
-extension ColorMultipeerSession: MCSessionDelegate {
+extension MultipeerSession: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         log.info("peer \(peerID) didChangeState: \(state.rawValue)")
     }

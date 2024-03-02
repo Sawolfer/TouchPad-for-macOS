@@ -4,7 +4,7 @@ import MultipeerConnectivity
 
 struct ContentView: View {
     
-    @StateObject var colorSession = ColorMultipeerSession()
+    @StateObject var colorSession = MultipeerSession()
     
     var body: some View {
         ZStack {
