@@ -16,16 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxs-jH-deO">
-                                <rect key="frame" x="52" y="214" width="276" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemYellowColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-mY-CpZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-mY-CpZ">
                                 <rect key="frame" x="152" y="421" width="89" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Connect"/>
@@ -33,9 +25,8 @@
                                     <action selector="didTapConnectButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F96-lh-Q4S"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47t-mO-n5o">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47t-mO-n5o">
                                 <rect key="frame" x="141" y="482" width="111" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Disconnect"/>
@@ -43,9 +34,8 @@
                                     <action selector="didTapDisconnectButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sOR-ED-G3M"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a5-vs-rAs">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a5-vs-rAs">
                                 <rect key="frame" x="164" y="556" width="64" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Send"/>
@@ -53,9 +43,26 @@
                                     <action selector="didTapSendButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sSU-xt-ZlT"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxs-jH-deO">
+                                <rect key="frame" x="58" y="213" width="276" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="47t-mO-n5o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1jg-gQ-7mW"/>
+                            <constraint firstItem="2a5-vs-rAs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="D38-i2-mAA"/>
+                            <constraint firstItem="wxs-jH-deO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Gx6-Hm-9ZM"/>
+                            <constraint firstItem="47t-mO-n5o" firstAttribute="top" secondItem="R7R-mY-CpZ" secondAttribute="bottom" constant="26" id="M6A-Jw-BrU"/>
+                            <constraint firstItem="R7R-mY-CpZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qq7-zp-5QI"/>
+                            <constraint firstAttribute="bottom" secondItem="47t-mO-n5o" secondAttribute="bottom" constant="335" id="RQu-Wn-O6m"/>
+                            <constraint firstItem="wxs-jH-deO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="154" id="hDI-L1-mcy"/>
+                            <constraint firstItem="47t-mO-n5o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="n1j-kS-f19"/>
+                            <constraint firstItem="2a5-vs-rAs" firstAttribute="top" secondItem="47t-mO-n5o" secondAttribute="bottom" constant="39" id="pB9-4H-aR6"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="connectButton" destination="R7R-mY-CpZ" id="Wn2-ir-BHo"/>
