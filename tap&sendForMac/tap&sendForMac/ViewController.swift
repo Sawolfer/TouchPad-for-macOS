@@ -106,14 +106,10 @@ extension ViewController: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-//        DispatchQueue.main.async {
-//            guard let message = try? JSONDecoder().decode(String.self, from: data) else { return }
-//            let alert = NSAlert()
-//            alert.messageText = message
-//            alert.addButton(withTitle: "OK")
-////            self.present(alert, animator: true as! NSViewControllerPresentationAnimator)
-//            alert.runModal()
-//        }
+        DispatchQueue.main.async {
+            guard let message = try? JSONDecoder().decode(String.self, from: data) else { return }
+            
+        }
         self.clickLeft()
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID){
