@@ -712,7 +712,7 @@
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yAS-Eg-9eI">
                                 <rect key="frame" x="92" y="195" width="281" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="PMx-kd-2kb">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Connection status" id="PMx-kd-2kb">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

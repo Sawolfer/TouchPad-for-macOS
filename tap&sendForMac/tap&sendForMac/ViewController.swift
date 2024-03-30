@@ -16,20 +16,6 @@ class ViewController: NSViewController {
         startBrowser()
     }
     
-    
-    
-
-    func clickLeft(){
-        var mousePos = NSEvent.mouseLocation
-        mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
-        let point = CGPoint(x: mousePos.x, y: mousePos.y)
-        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
-        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
-        mouseDown?.post(tap: .cghidEventTap)
-        usleep(500)
-        mouseUp?.post(tap: .cghidEventTap)
-    }
-    
     // MARK: - Actions
     
     @IBAction func didTapConnectButton(_ sender: Any) {
@@ -108,9 +94,10 @@ extension ViewController: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async {
             guard let message = try? JSONDecoder().decode(String.self, from: data) else { return }
-            
+            var mouseAction = MouseActions()
+            mouseAction.SignalMan(type: message)
         }
-        self.clickLeft()
+        
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID){
     }

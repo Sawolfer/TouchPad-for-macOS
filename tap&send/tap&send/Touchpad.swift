@@ -13,7 +13,6 @@ class Touchpad: UIViewController{
     @IBOutlet var statusLabel : UILabel!
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var disconnectButton: UIButton!
-    @IBOutlet var sendButton: UIButton!
     
     @IBOutlet weak var Recogniser: UILabel!
     
@@ -31,7 +30,7 @@ class Touchpad: UIViewController{
         let location = sender.location(in: self.view)
         
         Recogniser.text = "One finger at \(location)"
-        
+        send(message: "left_mouse_click")
     }
     
     // MARK: - Actions
@@ -46,9 +45,6 @@ class Touchpad: UIViewController{
         })
         stopBrowsingAdvertising()
         startBrowser()
-    }
-    @IBAction func didTapSendButton(_ sender: Any) {
-        send(message: "леее здарова я \(peerID.displayName)")
     }
     
 

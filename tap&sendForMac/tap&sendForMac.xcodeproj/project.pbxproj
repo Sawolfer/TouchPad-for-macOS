@@ -14,6 +14,8 @@
 		B450A71B2BB6F7750009E942 /* tap_sendForMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A71A2BB6F7750009E942 /* tap_sendForMacTests.swift */; };
 		B450A7252BB6F7750009E942 /* tap_sendForMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A7242BB6F7750009E942 /* tap_sendForMacUITests.swift */; };
 		B450A7272BB6F7750009E942 /* tap_sendForMacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A7262BB6F7750009E942 /* tap_sendForMacUITestsLaunchTests.swift */; };
+		B495D18B2BB8998700771797 /* ActionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B495D18A2BB8998700771797 /* ActionTypes.swift */; };
+		B495D18D2BB899B500771797 /* MouseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B495D18C2BB899B500771797 /* MouseActions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		B450A7202BB6F7750009E942 /* tap&sendForMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tap&sendForMacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B450A7242BB6F7750009E942 /* tap_sendForMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendForMacUITests.swift; sourceTree = "<group>"; };
 		B450A7262BB6F7750009E942 /* tap_sendForMacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendForMacUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B495D18A2BB8998700771797 /* ActionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTypes.swift; sourceTree = "<group>"; };
+		B495D18C2BB899B500771797 /* MouseActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseActions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				B450A70C2BB6F7750009E942 /* Assets.xcassets */,
 				B450A70E2BB6F7750009E942 /* Main.storyboard */,
 				B450A7112BB6F7750009E942 /* tap_sendForMac.entitlements */,
+				B495D18A2BB8998700771797 /* ActionTypes.swift */,
+				B495D18C2BB899B500771797 /* MouseActions.swift */,
 			);
 			path = "tap&sendForMac";
 			sourceTree = "<group>";
@@ -251,8 +257,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B495D18B2BB8998700771797 /* ActionTypes.swift in Sources */,
 				B450A70B2BB6F7740009E942 /* ViewController.swift in Sources */,
 				B450A7092BB6F7740009E942 /* AppDelegate.swift in Sources */,
+				B495D18D2BB899B500771797 /* MouseActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

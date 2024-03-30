@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="3ni-U1-WH8">
             <objects>
-                <viewController id="GWh-tN-dys" customClass="ViewController" customModule="TouchpadDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GWh-tN-dys" customClass="ViewController" customModule="tap_send" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IpB-9P-wR3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,29 +69,19 @@
         <!--Touchpad-->
         <scene sceneID="ieO-0z-h4a">
             <objects>
-                <viewController id="Scb-3z-SRs" customClass="Touchpad" customModule="TouchpadDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Scb-3z-SRs" customClass="Touchpad" customModule="tap_send" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r97-b7-5iB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a5-vs-rAs">
-                                <rect key="frame" x="163.41233516054695" y="228.00000000000432" width="64.000000000022283" height="35"/>
-                                <color key="tintColor" systemColor="systemYellowColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Send"/>
-                                <connections>
-                                    <action selector="didTapSendButton:" destination="Scb-3z-SRs" eventType="touchUpInside" id="3hJ-Z3-Knu"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxs-jH-deO">
-                                <rect key="frame" x="176" y="797" width="41.333333333333343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Connection status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxs-jH-deO">
+                                <rect key="frame" x="127" y="797" width="139" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemYellowColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trF-Ax-AUE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trF-Ax-AUE">
                                 <rect key="frame" x="16" y="366" width="361" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
@@ -102,17 +92,19 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="wxs-jH-deO" firstAttribute="top" secondItem="wLQ-JD-CJQ" secondAttribute="top" constant="694" id="8Bv-QJ-Uvm"/>
-                            <constraint firstItem="2a5-vs-rAs" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="Sui-jo-i06"/>
-                            <constraint firstItem="2a5-vs-rAs" firstAttribute="top" secondItem="wLQ-JD-CJQ" secondAttribute="top" constant="125.00000000000432" id="Xd6-El-76H"/>
+                            <constraint firstItem="trF-Ax-AUE" firstAttribute="top" secondItem="wLQ-JD-CJQ" secondAttribute="top" constant="263" id="V49-Fh-q2u"/>
                             <constraint firstItem="wxs-jH-deO" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="rp8-hc-zQ8"/>
+                            <constraint firstItem="trF-Ax-AUE" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="zYC-V8-19f"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="9xe-2H-YQE" appends="YES" id="b35-Fi-Rg1"/>
+                            <outletCollection property="gestureRecognizers" destination="O0Y-bk-m3p" appends="YES" id="pHU-ue-8Bt"/>
+                            <outletCollection property="gestureRecognizers" destination="3Fj-b4-eNd" appends="YES" id="d2G-22-cKd"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="LEN-l8-QH9">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" id="47t-mO-n5o">
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" id="47t-mO-n5o">
                             <rect key="frame" x="141.33333333333334" y="5" width="110.33333333333334" height="34.333333333333336"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" systemColor="systemYellowColor"/>
@@ -139,7 +131,6 @@
                         <outlet property="Recogniser" destination="trF-Ax-AUE" id="GHC-Vw-GDL"/>
                         <outlet property="connectButton" destination="R7R-mY-CpZ" id="aaN-UE-g4b"/>
                         <outlet property="disconnectButton" destination="47t-mO-n5o" id="G0j-aB-j8G"/>
-                        <outlet property="sendButton" destination="2a5-vs-rAs" id="cct-4C-9PC"/>
                         <outlet property="statusLabel" destination="wxs-jH-deO" id="lh3-r3-hmb"/>
                     </connections>
                 </viewController>
@@ -149,6 +140,8 @@
                         <action selector="TapOneFinger:" destination="Scb-3z-SRs" id="JTj-38-Cfq"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pinchGestureRecognizer id="O0Y-bk-m3p"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="3Fj-b4-eNd"/>
             </objects>
             <point key="canvasLocation" x="924.4274809160305" y="-39.436619718309863"/>
         </scene>
