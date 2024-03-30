@@ -16,6 +16,7 @@
 		B47746E22BB4A73F00EE8BEE /* tap_sendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746E12BB4A73F00EE8BEE /* tap_sendTests.swift */; };
 		B47746EC2BB4A73F00EE8BEE /* tap_sendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746EB2BB4A73F00EE8BEE /* tap_sendUITests.swift */; };
 		B47746EE2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746ED2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift */; };
+		B495D1892BB83E1B00771797 /* Touchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B495D1882BB83E1B00771797 /* Touchpad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B47746E72BB4A73F00EE8BEE /* tap&sendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tap&sendUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47746EB2BB4A73F00EE8BEE /* tap_sendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITests.swift; sourceTree = "<group>"; };
 		B47746ED2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B495D1882BB83E1B00771797 /* Touchpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touchpad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				B47746D32BB4A73F00EE8BEE /* Assets.xcassets */,
 				B47746D52BB4A73F00EE8BEE /* LaunchScreen.storyboard */,
 				B47746D82BB4A73F00EE8BEE /* Info.plist */,
+				B495D1882BB83E1B00771797 /* Touchpad.swift */,
 			);
 			path = "tap&send";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B47746CF2BB4A73D00EE8BEE /* ViewController.swift in Sources */,
+				B495D1892BB83E1B00771797 /* Touchpad.swift in Sources */,
 				B47746CB2BB4A73D00EE8BEE /* AppDelegate.swift in Sources */,
 				B47746CD2BB4A73D00EE8BEE /* SceneDelegate.swift in Sources */,
 			);

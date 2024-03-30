@@ -1,82 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="edR-cL-w4E">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="3ni-U1-WH8">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="tap_send" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="GWh-tN-dys" customClass="ViewController" customModule="TouchpadDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IpB-9P-wR3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-mY-CpZ">
-                                <rect key="frame" x="152" y="421" width="89" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TouchPad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E14-bE-ubk">
+                                <rect key="frame" x="152.66666666666666" y="251" width="88" height="30"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaE-bd-Rq0">
+                                <rect key="frame" x="162.66666666666666" y="453" width="68" height="44"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Connect"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start">
+                                    <fontDescription key="titleFontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="didTapConnectButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F96-lh-Q4S"/>
+                                    <segue destination="Scb-3z-SRs" kind="show" id="r11-1z-FHW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47t-mO-n5o">
-                                <rect key="frame" x="141" y="482" width="111" height="35"/>
-                                <color key="tintColor" systemColor="systemYellowColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Disconnect"/>
-                                <connections>
-                                    <action selector="didTapDisconnectButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sOR-ED-G3M"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a5-vs-rAs">
-                                <rect key="frame" x="164" y="556" width="64" height="35"/>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bjM-0C-8kf"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kaE-bd-Rq0" firstAttribute="top" secondItem="bjM-0C-8kf" secondAttribute="top" constant="350" id="34s-G2-5uz"/>
+                            <constraint firstItem="E14-bE-ubk" firstAttribute="top" secondItem="bjM-0C-8kf" secondAttribute="top" constant="148" id="HdL-Bv-n9g"/>
+                            <constraint firstItem="E14-bE-ubk" firstAttribute="centerX" secondItem="bjM-0C-8kf" secondAttribute="centerX" id="loZ-aC-sg9"/>
+                            <constraint firstItem="kaE-bd-Rq0" firstAttribute="centerX" secondItem="bjM-0C-8kf" secondAttribute="centerX" id="wwK-Qb-wTb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7XC-Mm-HX3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXU-Qi-uUI" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54.198473282442748" y="-34.507042253521128"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RDF-fB-S5F">
+            <objects>
+                <navigationController id="edR-cL-w4E" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l4e-q2-S1H">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="GWh-tN-dys" kind="relationship" relationship="rootViewController" id="obe-xh-KsE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14G-P2-TsV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46" y="-755"/>
+        </scene>
+        <!--Touchpad-->
+        <scene sceneID="ieO-0z-h4a">
+            <objects>
+                <viewController id="Scb-3z-SRs" customClass="Touchpad" customModule="TouchpadDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r97-b7-5iB">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a5-vs-rAs">
+                                <rect key="frame" x="163.41233516054695" y="228.00000000000432" width="64.000000000022283" height="35"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Send"/>
                                 <connections>
-                                    <action selector="didTapSendButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sSU-xt-ZlT"/>
+                                    <action selector="didTapSendButton:" destination="Scb-3z-SRs" eventType="touchUpInside" id="3hJ-Z3-Knu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxs-jH-deO">
-                                <rect key="frame" x="58" y="213" width="276" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxs-jH-deO">
+                                <rect key="frame" x="176" y="797" width="41.333333333333343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemYellowColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trF-Ax-AUE">
+                                <rect key="frame" x="16" y="366" width="361" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="wLQ-JD-CJQ"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="47t-mO-n5o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1jg-gQ-7mW"/>
-                            <constraint firstItem="2a5-vs-rAs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="D38-i2-mAA"/>
-                            <constraint firstItem="wxs-jH-deO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Gx6-Hm-9ZM"/>
-                            <constraint firstItem="47t-mO-n5o" firstAttribute="top" secondItem="R7R-mY-CpZ" secondAttribute="bottom" constant="26" id="M6A-Jw-BrU"/>
-                            <constraint firstItem="R7R-mY-CpZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qq7-zp-5QI"/>
-                            <constraint firstAttribute="bottom" secondItem="47t-mO-n5o" secondAttribute="bottom" constant="335" id="RQu-Wn-O6m"/>
-                            <constraint firstItem="wxs-jH-deO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="154" id="hDI-L1-mcy"/>
-                            <constraint firstItem="47t-mO-n5o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="n1j-kS-f19"/>
-                            <constraint firstItem="2a5-vs-rAs" firstAttribute="top" secondItem="47t-mO-n5o" secondAttribute="bottom" constant="39" id="pB9-4H-aR6"/>
+                            <constraint firstItem="wxs-jH-deO" firstAttribute="top" secondItem="wLQ-JD-CJQ" secondAttribute="top" constant="694" id="8Bv-QJ-Uvm"/>
+                            <constraint firstItem="2a5-vs-rAs" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="Sui-jo-i06"/>
+                            <constraint firstItem="2a5-vs-rAs" firstAttribute="top" secondItem="wLQ-JD-CJQ" secondAttribute="top" constant="125.00000000000432" id="Xd6-El-76H"/>
+                            <constraint firstItem="wxs-jH-deO" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="rp8-hc-zQ8"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="9xe-2H-YQE" appends="YES" id="b35-Fi-Rg1"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="LEN-l8-QH9">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" id="47t-mO-n5o">
+                            <rect key="frame" x="141.33333333333334" y="5" width="110.33333333333334" height="34.333333333333336"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" systemColor="systemYellowColor"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Disconnect"/>
+                            <connections>
+                                <action selector="didTapDisconnectButton:" destination="Scb-3z-SRs" eventType="touchUpInside" id="x6W-qc-qFr"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="SkM-8y-dGq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" id="R7R-mY-CpZ">
+                                <rect key="frame" x="288" y="4.6666666666666679" width="89" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Connect"/>
+                                <connections>
+                                    <action selector="didTapConnectButton:" destination="Scb-3z-SRs" eventType="touchUpInside" id="lEd-33-3rc"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="connectButton" destination="R7R-mY-CpZ" id="Wn2-ir-BHo"/>
-                        <outlet property="disconnectButton" destination="47t-mO-n5o" id="Cux-Zz-FXT"/>
-                        <outlet property="sendButton" destination="2a5-vs-rAs" id="cBH-QJ-KdS"/>
-                        <outlet property="statusLabel" destination="wxs-jH-deO" id="HRQ-O0-YE7"/>
+                        <outlet property="Recogniser" destination="trF-Ax-AUE" id="GHC-Vw-GDL"/>
+                        <outlet property="connectButton" destination="R7R-mY-CpZ" id="aaN-UE-g4b"/>
+                        <outlet property="disconnectButton" destination="47t-mO-n5o" id="G0j-aB-j8G"/>
+                        <outlet property="sendButton" destination="2a5-vs-rAs" id="cct-4C-9PC"/>
+                        <outlet property="statusLabel" destination="wxs-jH-deO" id="lh3-r3-hmb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5io-Fr-63A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9xe-2H-YQE">
+                    <connections>
+                        <action selector="TapOneFinger:" destination="Scb-3z-SRs" id="JTj-38-Cfq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="35.877862595419849" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="924.4274809160305" y="-39.436619718309863"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

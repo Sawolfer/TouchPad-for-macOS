@@ -18,8 +18,6 @@
 		B40BC9B92B7026B400E8615E /* TouchpadDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BC9B82B7026B400E8615E /* TouchpadDemoUITests.swift */; };
 		B40BC9BB2B7026B400E8615E /* TouchpadDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BC9BA2B7026B400E8615E /* TouchpadDemoUITestsLaunchTests.swift */; };
 		B4E2BF0C2B71013700976510 /* Touchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E2BF0B2B71013700976510 /* Touchpad.swift */; };
-		B4FFEE0D2B78D1D200C25B67 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CF817F2B760E87006BF26A /* Cocoa.framework */; platformFilters = (macos, ); };
-		B4FFEE0E2B78D1D200C25B67 /* Cocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4CF817F2B760E87006BF26A /* Cocoa.framework */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +44,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B4FFEE0E2B78D1D200C25B67 /* Cocoa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,7 +66,6 @@
 		B40BC9B82B7026B400E8615E /* TouchpadDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchpadDemoUITests.swift; sourceTree = "<group>"; };
 		B40BC9BA2B7026B400E8615E /* TouchpadDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchpadDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B4CF813C2B760A99006BF26A /* TouchpadDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouchpadDemo.entitlements; sourceTree = "<group>"; };
-		B4CF817F2B760E87006BF26A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		B4E2BF0B2B71013700976510 /* Touchpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touchpad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +74,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4FFEE0D2B78D1D200C25B67 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +152,6 @@
 		B4CF817E2B760E87006BF26A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B4CF817F2B760E87006BF26A /* Cocoa.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -1,33 +1,37 @@
+//
+//  ViewController.swift
+//  tap&send
+//
+//  Created by Савва Пономарев on 27.03.2024.
+//  source : https://www.youtube.com/watch?v=YWRMQg6XUsI
+
 import MultipeerConnectivity
-import Cocoa
+import UIKit
 
-class ViewController: NSViewController {
+class Touchpad: UIViewController{
 
-    @IBOutlet var statusLabel: NSTextField!
-    @IBOutlet var connectButton: NSButton!
-    @IBOutlet var disconnectButton: NSButton!
-    @IBOutlet var sendButton: NSButton!
+    @IBOutlet var statusLabel : UILabel!
+    @IBOutlet var connectButton: UIButton!
+    @IBOutlet var disconnectButton: UIButton!
+    @IBOutlet var sendButton: UIButton!
+    
+    @IBOutlet weak var Recogniser: UILabel!
     
     // MARK: - View lifecycle
     override func viewDidLoad() {
-        super.viewDidLoad()
+//        super.viewDidLoad()
         multipeersession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         multipeersession?.delegate = self
         startBrowser()
     }
     
+    // MARK: - TouchRecogniser
     
-    
-
-    func clickLeft(){
-        var mousePos = NSEvent.mouseLocation
-        mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
-        let point = CGPoint(x: mousePos.x, y: mousePos.y)
-        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
-        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
-        mouseDown?.post(tap: .cghidEventTap)
-        usleep(500)
-        mouseUp?.post(tap: .cghidEventTap)
+    @IBAction func TapOneFinger(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: self.view)
+        
+        Recogniser.text = "One finger at \(location)"
+        
     }
     
     // MARK: - Actions
@@ -43,79 +47,91 @@ class ViewController: NSViewController {
         stopBrowsingAdvertising()
         startBrowser()
     }
-    
     @IBAction func didTapSendButton(_ sender: Any) {
         send(message: "леее здарова я \(peerID.displayName)")
     }
     
+
     // MARK: - Private constants
     
     private let serviceType = "mctest"
     
     // MARK: - Private
     
-    private var multipeersession: MCSession?
-    private var peerID = MCPeerID(displayName: Host.current().localizedName ?? "Unknown")
-    private var browser: MCNearbyServiceBrowser?
-    private var advertiser: MCNearbyServiceAdvertiser?
+    private var multipeersession : MCSession?
+    private var peerID = MCPeerID(displayName: UIDevice.current.name)
+    private var browser : MCNearbyServiceBrowser?
+    private var advertiser : MCNearbyServiceAdvertiser?
     
-    // MARK: - Private Methods
     
-    private func startAdvertiser() {
+}
+
+private extension Touchpad{
+    
+    func startAdvertiser(){
         advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
         advertiser?.delegate = self
         advertiser?.startAdvertisingPeer()
     }
     
-    private func startBrowser() {
+    func startBrowser(){
         browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
         browser?.delegate = self
         browser?.startBrowsingForPeers()
     }
     
-    private func stopBrowsingAdvertising() {
-        browser?.stopBrowsingForPeers()
-        advertiser?.stopAdvertisingPeer()
+    func stopBrowsingAdvertising(){
+        if let browser = browser {
+            browser.stopBrowsingForPeers()
+        }
+        if let advertiser = advertiser {
+            advertiser.stopAdvertisingPeer()
+        }
         multipeersession?.disconnect()
     }
     
-    private func send(message: String) {
+    func send(message: String) {
         guard let connectedPeers = multipeersession?.connectedPeers,
-              let messageData = try? JSONEncoder().encode(message) else { return }
+              let messageData = try? JSONEncoder().encode(message) else {return}
         do {
             try multipeersession?.send(messageData, toPeers: connectedPeers, with: .reliable)
-        } catch {}
+        } catch{}
     }
 }
 
 // MARK: - MCSessionDelegate
-extension ViewController: MCSessionDelegate {
+extension Touchpad : MCSessionDelegate{
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        DispatchQueue.main.async {
-            switch state {
-            case .connecting:
-                self.statusLabel.stringValue = "Connecting"
-            case .connected:
-                self.statusLabel.stringValue = "Connected"
-            case .notConnected:
-                self.statusLabel.stringValue = "Not connected"
-            @unknown default:
-                self.statusLabel.stringValue = "Unknown state"
+        switch state {
+            
+        case .connecting :
+            DispatchQueue.main.async{
+                self.statusLabel.text = "Connecing"
+            }
+        case .connected :
+                    DispatchQueue.main.async{
+                    self.statusLabel.text = "Connected"
+                }
+        case .notConnected :
+            DispatchQueue.main.async{
+                self.statusLabel.text = "Not connected"
+            }
+        @unknown default :
+            DispatchQueue.main.async{
+                self.statusLabel.text = "Rofls"
             }
         }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-//        DispatchQueue.main.async {
-//            guard let message = try? JSONDecoder().decode(String.self, from: data) else { return }
-//            let alert = NSAlert()
-//            alert.messageText = message
-//            alert.addButton(withTitle: "OK")
-////            self.present(alert, animator: true as! NSViewControllerPresentationAnimator)
-//            alert.runModal()
-//        }
-        self.clickLeft()
+        DispatchQueue.main.async {
+            guard let message = try? JSONDecoder().decode(String.self, from: data) else {return}
+            let alert  = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Oki", style: .cancel))
+            self.present(alert, animated: true)
+        }
     }
+    
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID){
     }
     
@@ -124,21 +140,17 @@ extension ViewController: MCSessionDelegate {
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
     }
-    
-    // Other delegate methods remain the same
 }
 
 // MARK: - MCNearbyServiceAdvertiserDelegate
-extension ViewController: MCNearbyServiceAdvertiserDelegate {
+extension Touchpad : MCNearbyServiceAdvertiserDelegate{
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         invitationHandler(true, multipeersession)
     }
-    
-    // Delegate methods remain the same
 }
 
 // MARK: - MCNearbyServiceBrowserDelegate
-extension ViewController: MCNearbyServiceBrowserDelegate {
+extension Touchpad: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         guard let multipeersession = multipeersession else { return }
         browser.invitePeer(peerID, to: multipeersession, withContext: nil, timeout: 10.0)
@@ -147,5 +159,5 @@ extension ViewController: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
     }
     
-    // Delegate methods remain the same
+    
 }

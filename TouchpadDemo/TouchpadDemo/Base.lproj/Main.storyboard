@@ -31,7 +31,7 @@
                                     <fontDescription key="titleFontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="n9P-dY-34A" kind="show" id="kpl-Ei-BpJ"/>
+                                    <segue destination="n9P-dY-34A" kind="show" id="hgU-2Q-Fgt"/>
                                 </connections>
                             </button>
                         </subviews>
