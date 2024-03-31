@@ -27,10 +27,18 @@ class Touchpad: UIViewController{
     // MARK: - TouchRecogniser
     
     @IBAction func TapOneFinger(_ sender: UITapGestureRecognizer) {
-        let location = sender.location(in: self.view)
+//        let location = sender.location(in: self.view)
         
-        Recogniser.text = "One finger at \(location)"
+        Recogniser.text = "One finger"
         send(message: "left_mouse_click")
+    }
+    @IBAction func LongTouchFinger(_ sender: UILongPressGestureRecognizer) {
+        Recogniser.text = "Long Touch"
+        send(message: "long_touchpad_touch")
+    }
+    @IBAction func PinchFingers(_ sender: UIPinchGestureRecognizer) {
+        Recogniser.text = "Pinch"
+        send(message: "pinch")
     }
     
     // MARK: - Actions

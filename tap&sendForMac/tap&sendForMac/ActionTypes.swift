@@ -11,6 +11,8 @@ enum ActionTypes : String {
     case left_mouse_click = "left_mouse_click"
     case right_mouce_click = "right_mouce_click"
     case long_touchpad_touch = "long_touchpad_touch"
+    case two_fingers_down = "two_fingers_down"
+    case two_fingers_up = "two_fingers_up"
     case three_fingers_swipe_left = "three_fingers_swipe_left"
     case three_fingers_swipe_right = "three_fingers_swipe_right"
     case three_fingers_swipe_up = "three_fingers_swipe_up"

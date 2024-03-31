@@ -94,7 +94,7 @@ extension ViewController: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async {
             guard let message = try? JSONDecoder().decode(String.self, from: data) else { return }
-            var mouseAction = MouseActions()
+            let mouseAction = MouseActions()
             mouseAction.SignalMan(type: message)
         }
         

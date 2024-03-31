@@ -11,7 +11,6 @@ class MouseActions{
     
     func MouseActions(){}
     
-    
     func SignalMan(type : String){
         let action = ActionTypes(rawValue: type)
         switch action{
@@ -22,6 +21,12 @@ class MouseActions{
             self.clickRight()
             break
         case .some(.long_touchpad_touch):
+            
+            break
+        case .some(.two_fingers_down):
+            
+            break
+        case .some(.two_fingers_up):
             
             break
         case .some(.three_fingers_swipe_left):
@@ -74,11 +79,35 @@ class MouseActions{
         var mousePos = NSEvent.mouseLocation
         mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
         let point = CGPoint(x: mousePos.x, y: mousePos.y)
-        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown , mouseCursorPosition: point, mouseButton: .left)
-        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
+        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDragged, mouseCursorPosition: point, mouseButton: .right)
+        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .right)
         mouseDown?.post(tap: .cghidEventTap)
-        usleep(100)
+        usleep(500)
         mouseUp?.post(tap: .cghidEventTap)
+    }
+    func scrollDown(){
+        
+    }
+    func scrollUp(){
+        
+    }
+    func rightScreen(){
+        
+    }
+    func leftScreen(){
+        
+    }
+    func launchScreen(){
+        
+    }
+    func expose(){
+        
+    }
+    func pinch(){
+        
+    }
+    func spread(){
+        
     }
     
 }

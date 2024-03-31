@@ -140,8 +140,16 @@
                         <action selector="TapOneFinger:" destination="Scb-3z-SRs" id="JTj-38-Cfq"/>
                     </connections>
                 </tapGestureRecognizer>
-                <pinchGestureRecognizer id="O0Y-bk-m3p"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="3Fj-b4-eNd"/>
+                <pinchGestureRecognizer id="O0Y-bk-m3p">
+                    <connections>
+                        <action selector="PinchFingers:" destination="Scb-3z-SRs" id="XCv-El-LJC"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="3Fj-b4-eNd">
+                    <connections>
+                        <action selector="LongTouchFinger:" destination="Scb-3z-SRs" id="Xzb-AA-Csv"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="924.4274809160305" y="-39.436619718309863"/>
         </scene>
