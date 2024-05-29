@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="edR-cL-w4E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="edR-cL-w4E">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -100,6 +100,7 @@
                             <outletCollection property="gestureRecognizers" destination="9xe-2H-YQE" appends="YES" id="b35-Fi-Rg1"/>
                             <outletCollection property="gestureRecognizers" destination="O0Y-bk-m3p" appends="YES" id="pHU-ue-8Bt"/>
                             <outletCollection property="gestureRecognizers" destination="3Fj-b4-eNd" appends="YES" id="d2G-22-cKd"/>
+                            <outletCollection property="gestureRecognizers" destination="0Rv-Af-whE" appends="YES" id="QjZ-cV-ecc"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="LEN-l8-QH9">
@@ -150,6 +151,11 @@
                         <action selector="LongTouchFinger:" destination="Scb-3z-SRs" id="Xzb-AA-Csv"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="0Rv-Af-whE">
+                    <connections>
+                        <action selector="onePanRecognizer:" destination="Scb-3z-SRs" id="Jh1-Rk-yc4"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="924.4274809160305" y="-39.436619718309863"/>
         </scene>

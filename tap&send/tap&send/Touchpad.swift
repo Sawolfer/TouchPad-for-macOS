@@ -27,18 +27,69 @@ class Touchpad: UIViewController{
     // MARK: - TouchRecogniser
     
     @IBAction func TapOneFinger(_ sender: UITapGestureRecognizer) {
-//        let location = sender.location(in: self.view)
-        
-        Recogniser.text = "One finger"
-        send(message: "left_mouse_click")
+        //        let location = sender.location(in: self.view)
+        if (sender.numberOfTouches == 1){
+            Recogniser.text = "One finger"
+            send(message: "left_mouse_click")
+        } else if (sender.numberOfTouches == 2){
+            Recogniser.text = "two fingers"
+            send(message: "right_mouse_click")
+        }
     }
     @IBAction func LongTouchFinger(_ sender: UILongPressGestureRecognizer) {
         Recogniser.text = "Long Touch"
         send(message: "long_touchpad_touch")
     }
     @IBAction func PinchFingers(_ sender: UIPinchGestureRecognizer) {
-        Recogniser.text = "Pinch"
-        send(message: "pinch")
+//        Recogniser.text = "Pinch"
+//        send(message: "pinch")
+    }
+    
+    @IBAction func onePanRecognizer(_ sender: UIPanGestureRecognizer) {
+        if (sender.numberOfTouches == 2){
+            let translation = sender.translation(in: view)
+//            if translation.x > 0{
+//                Recogniser.text = "Two-finger swipe right"
+//                //  send(message: "
+//            }
+//            else if translation.x < 0{
+//                Recogniser.text = "Two-finger swipe left"
+//                //  send(message: "two_fingers_left")
+//            }
+            if translation.y < 0{
+                Recogniser.text = "Two-finger swipe up"
+                send(message: "two_fingers_up")
+            }
+            else if translation.y > 0{
+                Recogniser.text = "Two-finger swipe down"
+                send(message: "two_fingers_down")
+            }
+        }
+        else if (sender.numberOfTouches == 3){
+            let translation = sender.translation(in: view)
+            if translation.x > 0 && abs(translation.x) > abs(translation.y){
+                Recogniser.text = "three-finger swipe right"
+                  send(message: "three_fingers_swipe_right")
+            }
+            else if translation.x < 0 && abs(translation.x) > abs(translation.y){
+                Recogniser.text = "three-finger swipe left"
+                  send(message: "three_fingers_swipe_left")
+            }
+            if translation.y < 0 && abs(translation.y) > abs(translation.x){
+                Recogniser.text = "three-finger swipe up"
+                send(message: "two_fingers_up")
+            }
+        }
+    }
+    
+    
+    func sceneViewPannedTwoFingers(sender: UIPanGestureRecognizer) {
+        print("two finger pan!!!")
+    }
+
+
+    func sceneViewPannedOneFinger(sender: UIPanGestureRecognizer) {
+        print("one finger pan!!!")
     }
     
     // MARK: - Actions

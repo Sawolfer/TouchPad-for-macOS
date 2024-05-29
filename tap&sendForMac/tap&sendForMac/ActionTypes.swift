@@ -9,7 +9,7 @@ import Cocoa
 
 enum ActionTypes : String {
     case left_mouse_click = "left_mouse_click"
-    case right_mouce_click = "right_mouce_click"
+    case right_mouse_click = "right_mouse_click"
     case long_touchpad_touch = "long_touchpad_touch"
     case two_fingers_down = "two_fingers_down"
     case two_fingers_up = "two_fingers_up"
