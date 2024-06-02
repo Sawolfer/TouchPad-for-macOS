@@ -126,6 +126,8 @@ class MouseActions : NSViewController{
             // scroll event is not supported for macOS older than 10.13
         }
     }
+    
+    
     func rightScreen(){
         let arrowD = CGEvent(keyboardEventSource: nil, virtualKey: 123, keyDown: true)
         let arrowU = CGEvent(keyboardEventSource: nil, virtualKey: 123, keyDown: false)
