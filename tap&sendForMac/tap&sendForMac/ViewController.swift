@@ -2,6 +2,7 @@ import MultipeerConnectivity
 import Cocoa
 
 class ViewController: NSViewController {
+    
 
     @IBOutlet var statusLabel: NSTextField!
     @IBOutlet var connectButton: NSButton!
@@ -88,6 +89,7 @@ extension ViewController: MCSessionDelegate {
             @unknown default:
                 self.statusLabel.stringValue = "Unknown state"
             }
+            
         }
     }
     

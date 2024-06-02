@@ -7,12 +7,14 @@
 
 import Cocoa
 
-class MouseActions{
+class MouseActions : NSViewController{
+    
     
     func MouseActions(){}
     
     func SignalMan(type : String){
-        let action = ActionTypes(rawValue: type)
+        let components = type.split(separator: " ")
+        let action = ActionTypes(rawValue: String(components[0]))
         switch action{
         case .some(.left_mouse_click):
             self.clickLeft()
@@ -50,11 +52,27 @@ class MouseActions{
         case .some(.spreadingString):
             
             break
-        case .none:
-            break
+        default:
+            let tmpX: String = String(components[0])
+            let tmpY: String = String(components[1])
+
+            move(velX: tmpX.CGFloatValue(), velY: tmpY.CGFloatValue())
         }
     }
     
+    func move(velX: CGFloat!, velY: CGFloat!){
+        
+        var currentLocation: NSPoint = NSEvent.mouseLocation
+        currentLocation.y = NSHeight(NSScreen.screens[0].frame) - currentLocation.y
+        
+        let newX = currentLocation.x + velX * 0.05
+        let newY = currentLocation.y + velY * 0.05
+        
+        let newLocation = CGPoint(x: newX, y: newY)
+        
+        CGWarpMouseCursorPosition(newLocation)
+        usleep(100)
+    }
     func clickLeft(){
         var mousePos = NSEvent.mouseLocation
         mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
@@ -78,17 +96,25 @@ class MouseActions{
     func longClick(){
         //No ideas
     }
-    func scrollDown(){
+    func scrollDown() {
         if #available(OSX 10.13, *) {
-            guard let scrollEvent = CGEvent(scrollWheelEvent2Source: nil, units: CGScrollEventUnit.line, wheelCount: 2, wheel1: Int32(-2), wheel2: Int32(-2), wheel3: 0) else {
-                return
+            let scrollAmount: Int32 = 2
+            let numEvents: Int = 1
+            let delay: TimeInterval = 0.01
+            
+            for _ in 0..<numEvents {
+                guard let scrollEvent = CGEvent(scrollWheelEvent2Source: nil, units: CGScrollEventUnit.line, wheelCount: 2, wheel1: Int32(-scrollAmount), wheel2: Int32(-scrollAmount), wheel3: 0) else {
+                    return
+                }
+                scrollEvent.setIntegerValueField(CGEventField.eventSourceUserData, value: 1)
+                scrollEvent.post(tap: CGEventTapLocation.cghidEventTap)
+                usleep(UInt32(delay * 1_000_000)) // wait for a short delay
             }
-            scrollEvent.setIntegerValueField(CGEventField.eventSourceUserData, value: 1)
-            scrollEvent.post(tap: CGEventTapLocation.cghidEventTap)
         } else {
             // scroll event is not supported for macOS older than 10.13
         }
     }
+
     func scrollUp(){
         if #available(OSX 10.13, *) {
             guard let scrollEvent = CGEvent(scrollWheelEvent2Source: nil, units: CGScrollEventUnit.line, wheelCount: 2, wheel1: Int32(2), wheel2: Int32(2), wheel3: 0) else {
@@ -101,20 +127,25 @@ class MouseActions{
         }
     }
     func rightScreen(){
-        let src = CGEventSource(stateID: CGEventSourceStateID.hidSystemState)
-        let arrow = CGEvent(keyboardEventSource: src, virtualKey: 0x3E, keyDown: true)
+        let arrowD = CGEvent(keyboardEventSource: nil, virtualKey: 123, keyDown: true)
+        let arrowU = CGEvent(keyboardEventSource: nil, virtualKey: 123, keyDown: false)
         
-        arrow?.flags = .maskControl
-    
-        arrow?.post(tap: CGEventTapLocation.cghidEventTap)
+        arrowD?.flags = CGEventFlags.maskControl
+        
+        
+        arrowD?.post(tap: .cghidEventTap)
+        arrowU?.post(tap: .cghidEventTap)
     }
     func leftScreen(){
-        let src = CGEventSource(stateID: CGEventSourceStateID.hidSystemState)
-        let arrow = CGEvent(keyboardEventSource: src, virtualKey: 0x3D, keyDown: true)
+        let arrow = CGEvent(keyboardEventSource: nil, virtualKey: 124, keyDown: true)
         arrow?.flags = .maskControl
         
         arrow?.post(tap: CGEventTapLocation.cghidEventTap)
     }
+    func screens(){
+        
+    }
+    
     func launchScreen(){
         
     }
@@ -128,4 +159,15 @@ class MouseActions{
         
     }
     
+}
+
+extension String {
+
+  func CGFloatValue() -> CGFloat? {
+    guard let doubleValue = Double(self) else {
+      return nil
+    }
+
+    return CGFloat(doubleValue)
+  }
 }

@@ -46,50 +46,52 @@ class Touchpad: UIViewController{
     }
     
     @IBAction func onePanRecognizer(_ sender: UIPanGestureRecognizer) {
-        if (sender.numberOfTouches == 2){
+        if sender.numberOfTouches == 3 {
             let translation = sender.translation(in: view)
-//            if translation.x > 0{
+            let angle = atan2(translation.y, translation.x)
+            print("swipe")
+            if angle > -0.5 && angle <= 0.5 {
+                Recogniser.text = "three-finger swipe right"
+                send(message: "three_fingers_swipe_right")
+            } else if angle > -2 && angle <= -1 {
+                Recogniser.text = "three-finger swipe up"
+                send(message: "three_fingers_up")
+            } else if abs(angle) >= 3 {
+                Recogniser.text = "three-finger swipe left"
+                send(message: "three_fingers_swipe_left")
+            }
+            
+        } else if sender.numberOfTouches == 2 {
+            let translation = sender.translation(in: view)
+            let angle = atan2(translation.y, translation.x)
+            
+            if angle > -0.5 && angle <= 0.5 {
 //                Recogniser.text = "Two-finger swipe right"
-//                //  send(message: "
-//            }
-//            else if translation.x < 0{
-//                Recogniser.text = "Two-finger swipe left"
-//                //  send(message: "two_fingers_left")
-//            }
-            if translation.y < 0{
+//                send(message: "two_fingers_right")
+            } else if angle > -2 && angle <= -1 {
                 Recogniser.text = "Two-finger swipe up"
                 send(message: "two_fingers_up")
-            }
-            else if translation.y > 0{
+            } else if abs(angle) >= 3{
+//                Recogniser.text = "Two-finger swipe left"
+//                send(message: "two_fingers_left")
+            } else if angle > 1 && angle <= 2 {
                 Recogniser.text = "Two-finger swipe down"
                 send(message: "two_fingers_down")
             }
-        }
-        else if (sender.numberOfTouches == 3){
-            let translation = sender.translation(in: view)
-            if translation.x > 0 && abs(translation.x) > abs(translation.y){
-                Recogniser.text = "three-finger swipe right"
-                  send(message: "three_fingers_swipe_right")
-            }
-            else if translation.x < 0 && abs(translation.x) > abs(translation.y){
-                Recogniser.text = "three-finger swipe left"
-                  send(message: "three_fingers_swipe_left")
-            }
-            if translation.y < 0 && abs(translation.y) > abs(translation.x){
-                Recogniser.text = "three-finger swipe up"
-                send(message: "two_fingers_up")
-            }
-        }
-    }
+        } else if sender.numberOfTouches == 1 {
+            let velocity = sender.velocity(in: view)
+//            let translation = sender.translation(in: view)
+//            let angle = atan2(translation.y, translation.x)
+//            
+//            let degree = angle * 180 / 3.14
+//
+//            let velocityMagnitude = sqrt(velocity.x * velocity.x + velocity.y * velocity.y)
     
-    
-    func sceneViewPannedTwoFingers(sender: UIPanGestureRecognizer) {
-        print("two finger pan!!!")
-    }
-
-
-    func sceneViewPannedOneFinger(sender: UIPanGestureRecognizer) {
-        print("one finger pan!!!")
+            let msg = String(format: "%.5f", velocity.x) + " " + String(format: "%.5f", velocity.y)
+            print(msg)
+            send(message: msg)
+        }
+        
     }
     
     // MARK: - Actions
