@@ -9,15 +9,23 @@ class ViewController: NSViewController {
     @IBOutlet var disconnectButton: NSButton!
     @IBOutlet var sendButton: NSButton!
     
+    let mouse : MouseActions = MouseActions()
+    
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         multipeersession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         multipeersession?.delegate = self
         startBrowser()
+        
     }
     
     // MARK: - Actions
+    
+    @IBAction func test(_ sender: Any) {
+        mouse.rightScreen()
+    }
+    
     
     @IBAction func didTapConnectButton(_ sender: Any) {
         stopBrowsingAdvertising()

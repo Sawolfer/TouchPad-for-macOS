@@ -22,20 +22,28 @@ class Touchpad: UIViewController{
         multipeersession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         multipeersession?.delegate = self
         startBrowser()
+        
+        let oneTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.oneFingerTap(_:)))
+        oneTapGestureRecognizer.numberOfTapsRequired = 1
+        oneTapGestureRecognizer.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(oneTapGestureRecognizer)
+        
+        let twoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.twoFingersTap(_:)))
+        twoTapGestureRecognizer.numberOfTouchesRequired = 2
+        view.addGestureRecognizer(twoTapGestureRecognizer)
     }
     
     // MARK: - TouchRecogniser
     
-    @IBAction func TapOneFinger(_ sender: UITapGestureRecognizer) {
-        //        let location = sender.location(in: self.view)
-        if (sender.numberOfTouches == 1){
-            Recogniser.text = "One finger"
-            send(message: "left_mouse_click")
-        } else if (sender.numberOfTouches == 2){
-            Recogniser.text = "two fingers"
-            send(message: "right_mouse_click")
-        }
+    @objc func oneFingerTap(_ sender: UITapGestureRecognizer){
+        Recogniser.text = "One finger"
+        send(message: "left_mouse_click")
     }
+    @objc func twoFingersTap(_ sender: UITapGestureRecognizer){
+        Recogniser.text = "Two fingers"
+        send(message: "right_mouse_click")
+    }
+    
     @IBAction func LongTouchFinger(_ sender: UILongPressGestureRecognizer) {
         Recogniser.text = "Long Touch"
         send(message: "long_touchpad_touch")
@@ -80,15 +88,9 @@ class Touchpad: UIViewController{
             }
         } else if sender.numberOfTouches == 1 {
             let velocity = sender.velocity(in: view)
-//            let translation = sender.translation(in: view)
-//            let angle = atan2(translation.y, translation.x)
-//            
-//            let degree = angle * 180 / 3.14
-//
-//            let velocityMagnitude = sqrt(velocity.x * velocity.x + velocity.y * velocity.y)
     
             let msg = String(format: "%.5f", velocity.x) + " " + String(format: "%.5f", velocity.y)
-            print(msg)
+//            print(msg)
             send(message: msg)
         }
         

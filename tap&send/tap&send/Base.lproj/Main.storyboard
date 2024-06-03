@@ -97,7 +97,6 @@
                             <constraint firstItem="trF-Ax-AUE" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="zYC-V8-19f"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="9xe-2H-YQE" appends="YES" id="b35-Fi-Rg1"/>
                             <outletCollection property="gestureRecognizers" destination="O0Y-bk-m3p" appends="YES" id="pHU-ue-8Bt"/>
                             <outletCollection property="gestureRecognizers" destination="3Fj-b4-eNd" appends="YES" id="d2G-22-cKd"/>
                             <outletCollection property="gestureRecognizers" destination="0Rv-Af-whE" appends="YES" id="QjZ-cV-ecc"/>
@@ -136,11 +135,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5io-Fr-63A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="9xe-2H-YQE">
-                    <connections>
-                        <action selector="TapOneFinger:" destination="Scb-3z-SRs" id="JTj-38-Cfq"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <pinchGestureRecognizer id="O0Y-bk-m3p">
                     <connections>
                         <action selector="PinchFingers:" destination="Scb-3z-SRs" id="XCv-El-LJC"/>

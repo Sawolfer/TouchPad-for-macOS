@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import CoreGraphics
 
 class MouseActions : NSViewController{
     
@@ -94,7 +95,7 @@ class MouseActions : NSViewController{
         mouseUp?.post(tap: .cghidEventTap)
     }
     func longClick(){
-        //No ideas
+        
     }
     func scrollDown() {
         if #available(OSX 10.13, *) {
@@ -129,14 +130,11 @@ class MouseActions : NSViewController{
     
     
     func rightScreen(){
-        let arrowD = CGEvent(keyboardEventSource: nil, virtualKey: 123, keyDown: true)
-        let arrowU = CGEvent(keyboardEventSource: nil, virtualKey: 123, keyDown: false)
+//        123
+        let key = CGEvent(keyboardEventSource: nil, virtualKey: 0x7C, keyDown: true)
+        key?.flags = .maskControl
         
-        arrowD?.flags = CGEventFlags.maskControl
-        
-        
-        arrowD?.post(tap: .cghidEventTap)
-        arrowU?.post(tap: .cghidEventTap)
+        key?.post(tap: .cghidEventTap)
     }
     func leftScreen(){
         let arrow = CGEvent(keyboardEventSource: nil, virtualKey: 124, keyDown: true)
