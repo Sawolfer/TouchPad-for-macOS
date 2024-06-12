@@ -2,7 +2,7 @@
 //  tap_sendTests.swift
 //  tap&sendTests
 //
-//  Created by Савва Пономарев on 27.03.2024.
+//  Created by BrainPumpkin on 27.03.2024.
 //
 
 import XCTest

@@ -2,7 +2,7 @@
 //  ActionTypes.swift
 //  tap&sendForMac
 //
-//  Created by Савва Пономарев on 30.03.2024.
+//  Created by BrainPumpkin on 30.03.2024.
 //
 
 import Cocoa

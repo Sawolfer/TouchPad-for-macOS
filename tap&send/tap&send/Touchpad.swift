@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  tap&send
 //
-//  Created by Савва Пономарев on 27.03.2024.
+//  Created by BrainPumpkin on 27.03.2024.
 //  source : https://www.youtube.com/watch?v=YWRMQg6XUsI
 
 import MultipeerConnectivity

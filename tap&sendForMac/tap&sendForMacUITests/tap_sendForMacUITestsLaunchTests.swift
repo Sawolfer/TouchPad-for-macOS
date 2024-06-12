@@ -2,7 +2,7 @@
 //  tap_sendForMacUITestsLaunchTests.swift
 //  tap&sendForMacUITests
 //
-//  Created by Савва Пономарев on 29.03.2024.
+//  Created by BrainPumpkin on 29.03.2024.
 //
 
 import XCTest

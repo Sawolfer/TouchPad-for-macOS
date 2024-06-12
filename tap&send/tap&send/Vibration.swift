@@ -2,7 +2,7 @@
 //  Vibration.swift
 //  tap&send
 //
-//  Created by Савва Пономарев on 08.06.2024.
+//  Created by BrainPumpkin on 08.06.2024.
 //
 
 import UIKit

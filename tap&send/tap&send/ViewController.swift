@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  TouchpadDemo
 //
-//  Created by Савва Пономарев on 04.02.2024.
+//  Created by BrainPumpkin on 04.02.2024.
 //
 
 import UIKit
