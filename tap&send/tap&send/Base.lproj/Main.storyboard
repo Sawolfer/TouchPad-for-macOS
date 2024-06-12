@@ -99,7 +99,6 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="O0Y-bk-m3p" appends="YES" id="pHU-ue-8Bt"/>
                             <outletCollection property="gestureRecognizers" destination="3Fj-b4-eNd" appends="YES" id="d2G-22-cKd"/>
-                            <outletCollection property="gestureRecognizers" destination="0Rv-Af-whE" appends="YES" id="QjZ-cV-ecc"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="LEN-l8-QH9">
@@ -145,11 +144,6 @@
                         <action selector="LongTouchFinger:" destination="Scb-3z-SRs" id="Xzb-AA-Csv"/>
                     </connections>
                 </pongPressGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="0Rv-Af-whE">
-                    <connections>
-                        <action selector="onePanRecognizer:" destination="Scb-3z-SRs" id="Jh1-Rk-yc4"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="924.4274809160305" y="-39.436619718309863"/>
         </scene>

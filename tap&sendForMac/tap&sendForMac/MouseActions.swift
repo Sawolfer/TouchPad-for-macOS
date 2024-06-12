@@ -26,11 +26,10 @@ class MouseActions : NSViewController{
         case .some(.long_touchpad_touch):
             
             break
-        case .some(.two_fingers_down):
-            self.scrollUp()
-            break
-        case .some(.two_fingers_up):
-            self.scrollDown()
+        case .some(.two_fingers):
+            let velX: Int32 = Int32((String(components[1]) as NSString).floatValue * 0.01)
+            let velY: Int32 = Int32((String(components[2]) as NSString).floatValue * 0.01)
+            self.scroll(velX: velX, velY: velY)
             break
         case .some(.three_fingers_swipe_left):
             self.rightScreen()
@@ -39,7 +38,7 @@ class MouseActions : NSViewController{
             self.leftScreen()
             break
         case .some(.three_fingers_swipe_up):
-            
+            self.missionControl()
             break
         case .some(.four_fingers_pinch):
             
@@ -97,28 +96,12 @@ class MouseActions : NSViewController{
     func longClick(){
         
     }
-    func scrollDown() {
+    
+    func scroll(velX: Int32, velY: Int32){
+//        print(velX , velY)
+        
         if #available(OSX 10.13, *) {
-            let scrollAmount: Int32 = 2
-            let numEvents: Int = 1
-            let delay: TimeInterval = 0.01
-            
-            for _ in 0..<numEvents {
-                guard let scrollEvent = CGEvent(scrollWheelEvent2Source: nil, units: CGScrollEventUnit.line, wheelCount: 2, wheel1: Int32(-scrollAmount), wheel2: Int32(-scrollAmount), wheel3: 0) else {
-                    return
-                }
-                scrollEvent.setIntegerValueField(CGEventField.eventSourceUserData, value: 1)
-                scrollEvent.post(tap: CGEventTapLocation.cghidEventTap)
-                usleep(UInt32(delay * 1_000_000)) // wait for a short delay
-            }
-        } else {
-            // scroll event is not supported for macOS older than 10.13
-        }
-    }
-
-    func scrollUp(){
-        if #available(OSX 10.13, *) {
-            guard let scrollEvent = CGEvent(scrollWheelEvent2Source: nil, units: CGScrollEventUnit.line, wheelCount: 2, wheel1: Int32(2), wheel2: Int32(2), wheel3: 0) else {
+            guard let scrollEvent = CGEvent(scrollWheelEvent2Source: nil, units: CGScrollEventUnit.line, wheelCount: 2, wheel1: Int32(velY), wheel2: Int32(velX), wheel3: 1) else {
                 return
             }
             scrollEvent.setIntegerValueField(CGEventField.eventSourceUserData, value: 1)
@@ -128,35 +111,54 @@ class MouseActions : NSViewController{
         }
     }
     
+    func rightScreen() {
+        screens(keyCode: 0x7C)
+    }
     
-    func rightScreen(){
-//        123
-        let key = CGEvent(keyboardEventSource: nil, virtualKey: 0x7C, keyDown: true)
-        key?.flags = .maskControl
-        
-        key?.post(tap: .cghidEventTap)
-    }
+    
     func leftScreen(){
-        let arrow = CGEvent(keyboardEventSource: nil, virtualKey: 124, keyDown: true)
-        arrow?.flags = .maskControl
-        
-        arrow?.post(tap: CGEventTapLocation.cghidEventTap)
+        screens(keyCode: 0x7B)
     }
-    func screens(){
-        
+    
+    func missionControl(){
+        screens(keyCode: 0x7E)
     }
+    
+    func screens(keyCode: CGKeyCode){
+        guard let controlDown = CGEvent(keyboardEventSource: nil, virtualKey: 0x3B, keyDown: true) else {
+            return
+        }
+        controlDown.flags = .maskControl
+        
+        guard let keyDown = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: true) else {
+            return
+        }
+        keyDown.flags = [.maskControl, .maskSecondaryFn]
+        
+        guard let keyUp = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: false) else {
+            return
+        }
+        keyUp.flags = [.maskControl, .maskSecondaryFn]
+
+        guard let controlUp = CGEvent(keyboardEventSource: nil, virtualKey: 0x3B, keyDown: false) else {
+            return
+        }
+        
+        controlDown.post(tap: .cghidEventTap)
+        keyDown.post(tap: .cghidEventTap)
+        keyUp.post(tap: .cghidEventTap)
+        controlUp.post(tap: .cghidEventTap)
+    }
+    
+    
     
     func launchScreen(){
-        
     }
     func expose(){
-        
     }
     func pinch(){
-        
     }
     func spread(){
-        
     }
     
 }

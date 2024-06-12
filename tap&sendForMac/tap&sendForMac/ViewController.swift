@@ -22,11 +22,6 @@ class ViewController: NSViewController {
     
     // MARK: - Actions
     
-    @IBAction func test(_ sender: Any) {
-        mouse.rightScreen()
-    }
-    
-    
     @IBAction func didTapConnectButton(_ sender: Any) {
         stopBrowsingAdvertising()
         startAdvertiser()
