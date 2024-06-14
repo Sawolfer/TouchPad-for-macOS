@@ -14,7 +14,7 @@ class Touchpad: UIViewController{
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var disconnectButton: UIButton!
     
-    @IBOutlet weak var Recogniser: UILabel!
+//    @IBOutlet weak var Recogniser: UILabel!
     
     // MARK: - View lifecycle
     override func viewDidLoad() {
@@ -51,17 +51,14 @@ class Touchpad: UIViewController{
     // MARK: - TouchRecogniser
     
     @objc func oneFingerTap(_ sender: UITapGestureRecognizer){
-        Recogniser.text = "One tap"
         send(message: "left_mouse_click")
         Vibration.medium.vibrate()
     }
     @objc func twoFingersTap(_ sender: UITapGestureRecognizer){
-        Recogniser.text = "Two tap"
         send(message: "right_mouse_click")
     }
     
     @IBAction func LongTouchFinger(_ sender: UILongPressGestureRecognizer) {
-        Recogniser.text = "Long Touch"
         send(message: "long_touchpad_touch")
         Vibration.heavy.vibrate()
     }
@@ -74,15 +71,12 @@ class Touchpad: UIViewController{
         let velocity = sender.velocity(in: view)
 
         let msg = String(format: "%.5f", velocity.x) + " " + String(format: "%.5f", velocity.y)
-//            print(msg)
-        Recogniser.text = "One-finger"
         send(message: msg)
     }
     
     @objc func twoFingersPan(_ sender: UIPanGestureRecognizer){
         let velocity = sender.velocity(in: view)
         let msg = "two_fingers " + String(format: "%.5f", velocity.x) + " " + String(format: "%.5f", velocity.y)
-        Recogniser.text = "two-fingers"
         send(message: msg)
     }
     
@@ -91,18 +85,15 @@ class Touchpad: UIViewController{
         let angle = atan2(translation.y, translation.x)
         if angle > -0.5 && angle <= 0.5 {
             if sender.state == .began{
-                Recogniser.text = "three-finger swipe right"
                 send(message: "three_fingers_swipe_right")
 //                    print("right")
             }
         } else if angle > -2 && angle <= -1 {
             if sender.state == .began{
-                Recogniser.text = "three-finger swipe up"
                 send(message: "three_fingers_swipe_up")
             }
         } else if abs(angle) >= 2.5 {
             if sender.state == .began{
-                Recogniser.text = "three-finger swipe left"
                 send(message: "three_fingers_swipe_left")
 //                    print("left")
             }
@@ -239,6 +230,5 @@ extension Touchpad: MCNearbyServiceBrowserDelegate {
 extension Touchpad : UIGestureRecognizerDelegate{
     
     func dragAndDrop(_ gestureRecugniser: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer){
-        Recogniser.text = "both"
     }
 }

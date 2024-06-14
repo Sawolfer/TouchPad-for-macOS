@@ -3,7 +3,6 @@
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,21 +79,13 @@
                                 <color key="textColor" systemColor="systemYellowColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trF-Ax-AUE">
-                                <rect key="frame" x="171.66666666666666" y="351" width="71" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wLQ-JD-CJQ"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="wxs-jH-deO" firstAttribute="top" secondItem="wLQ-JD-CJQ" secondAttribute="top" constant="694" id="8Bv-QJ-Uvm"/>
-                            <constraint firstItem="trF-Ax-AUE" firstAttribute="top" secondItem="wLQ-JD-CJQ" secondAttribute="top" constant="263" id="V49-Fh-q2u"/>
                             <constraint firstItem="wxs-jH-deO" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="rp8-hc-zQ8"/>
-                            <constraint firstItem="trF-Ax-AUE" firstAttribute="centerX" secondItem="wLQ-JD-CJQ" secondAttribute="centerX" id="zYC-V8-19f"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="O0Y-bk-m3p" appends="YES" id="pHU-ue-8Bt"/>
@@ -127,7 +118,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="Recogniser" destination="trF-Ax-AUE" id="GHC-Vw-GDL"/>
                         <outlet property="connectButton" destination="R7R-mY-CpZ" id="aaN-UE-g4b"/>
                         <outlet property="disconnectButton" destination="47t-mO-n5o" id="G0j-aB-j8G"/>
                         <outlet property="statusLabel" destination="wxs-jH-deO" id="lh3-r3-hmb"/>
@@ -149,9 +139,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
