@@ -29,14 +29,14 @@ jobs:
 
     - name: Build the project
       run: |
-        xcodebuild -scheme TapAndSendForMac -sdk macosx -destination 'platform=macOS,arch=x86_64' clean build
+        xcodebuild -scheme tap_sendForMac -sdk macosx -destination 'platform=macOS,arch=x86_64' clean build
 
     - name: Archive the build artifacts
       if: success()
       uses: actions/upload-artifact@v3
       with:
         name: macos-build
-        path: build/Release/TapAndSendForMac.app
+        path: build/Release/tap_sendForMac.app
 
     - name: Clean up build
       run: |
