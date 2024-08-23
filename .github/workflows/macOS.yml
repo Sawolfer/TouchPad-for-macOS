@@ -21,7 +21,7 @@ jobs:
       run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
     - name: Build the project
-      working-directory: TouchPad/tap&sendForMac/tap&sendForMac.xcodeproj/project.pbxproj  # Replace with the actual path to your .xcodeproj or .xcworkspace
+      working-directory: TouchPad/tap&sendForMac/tap&sendForMac.xcodeproj  # Replace with the actual path to your .xcodeproj or .xcworkspace
       run: |
         xcodebuild -scheme tap_sendForMac -sdk macosx -destination 'platform=macOS,arch=x86_64' clean build
 
@@ -30,8 +30,8 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: macos-build
-        path: TouchPad/tap&sendForMac/tap&sendForMac.xcodeproj/project.pbxproj/build/Release/tap_sendForMac.app  # Adjust the path if necessary
+        path: TouchPad/tap&sendForMac/tap&sendForMac.xcodeproj/build/Release/tap_sendForMac.app  # Adjust the path if necessary
 
     - name: Clean up build
       run: |
-        rm -rf TouchPad/tap&sendForMac/tap&sendForMac.xcodeproj/project.pbxproj/build/
+        rm -rf TouchPad/tap&sendForMac/tap&sendForMac.xcodeproj/build/
