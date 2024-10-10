@@ -17,6 +17,9 @@ class MouseActions : NSViewController{
         let components = type.split(separator: " ")
         let action = ActionTypes(rawValue: String(components[0]))
         switch action{
+        case .some(.double_click):
+            
+            break
         case .some(.left_mouse_click):
             self.clickLeft()
             break
@@ -86,6 +89,16 @@ class MouseActions : NSViewController{
         }
         
         usleep(100)
+    }
+    func doubleClick(){
+        var mousePos = NSEvent.mouseLocation
+        mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
+        let point = CGPoint(x: mousePos.x, y: mousePos.y)
+        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDragged, mouseCursorPosition: point, mouseButton: .left)
+        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
+        mouseDown?.post(tap: .cghidEventTap)
+        usleep(500)
+        mouseUp?.post(tap: .cghidEventTap)
     }
     
     func clickLeft(){

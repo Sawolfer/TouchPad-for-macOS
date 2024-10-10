@@ -8,6 +8,7 @@
 import Cocoa
 
 enum ActionTypes : String {
+    case double_click = "double_click"
     case left_mouse_click = "left_mouse_click"
     case right_mouse_click = "right_mouse_click"
     case long_touchpad_touch = "long_touchpad_touch"
