@@ -60,19 +60,34 @@ class MouseActions : NSViewController{
         }
     }
     
-    func move(velX: CGFloat!, velY: CGFloat!){
-        
+    func move(velX: CGFloat!, velY: CGFloat!) {
         var currentLocation: NSPoint = NSEvent.mouseLocation
         currentLocation.y = NSHeight(NSScreen.screens[0].frame) - currentLocation.y
-        
         let newX = currentLocation.x + velX * 0.05
         let newY = currentLocation.y + velY * 0.05
-        
         let newLocation = CGPoint(x: newX, y: newY)
         
-        CGWarpMouseCursorPosition(newLocation)
+        for screen in NSScreen.screens {
+            let screenHeight = NSHeight(screen.frame)
+            let screenWidth = NSWidth(screen.frame)
+            
+            if newLocation.x >= 0 && newLocation.x <= screenWidth && newLocation.y >= 0 && newLocation.y <= screenHeight {
+                let mouseEvent = CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: newLocation, mouseButton: .left)
+                mouseEvent?.post(tap: .cghidEventTap)
+            }
+        }
+        
+        if newY >= NSHeight(NSScreen.screens[0].frame) - 10 {
+            NSApp.mainMenu?.performActionForItem(at: 0)
+        }
+        
+        if newY <= 10 {
+            NSApp.dockTile.perform(#selector(NSDockTile.display))
+        }
+        
         usleep(100)
     }
+    
     func clickLeft(){
         var mousePos = NSEvent.mouseLocation
         mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
