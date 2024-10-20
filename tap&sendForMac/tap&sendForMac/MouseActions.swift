@@ -18,7 +18,7 @@ class MouseActions : NSViewController{
         let action = ActionTypes(rawValue: String(components[0]))
         switch action{
         case .some(.double_click):
-            
+            self.doubleClick()
             break
         case .some(.left_mouse_click):
             self.clickLeft()
@@ -90,17 +90,27 @@ class MouseActions : NSViewController{
         
         usleep(100)
     }
-    func doubleClick(){
+    func doubleClick() {
         var mousePos = NSEvent.mouseLocation
         mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
         let point = CGPoint(x: mousePos.x, y: mousePos.y)
-        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDragged, mouseCursorPosition: point, mouseButton: .left)
-        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
-        mouseDown?.post(tap: .cghidEventTap)
-        usleep(500)
-        mouseUp?.post(tap: .cghidEventTap)
+        
+        let mouseDown1 = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
+        let mouseUp1 = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
+        
+        let mouseDown2 = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
+        let mouseUp2 = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
+
+        mouseDown1?.post(tap: .cghidEventTap)
+        usleep(100_000)
+        mouseUp1?.post(tap: .cghidEventTap)
+        
+        usleep(150_000)
+
+        mouseDown2?.post(tap: .cghidEventTap)
+        usleep(100_000)
+        mouseUp2?.post(tap: .cghidEventTap)
     }
-    
     func clickLeft(){
         var mousePos = NSEvent.mouseLocation
         mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y

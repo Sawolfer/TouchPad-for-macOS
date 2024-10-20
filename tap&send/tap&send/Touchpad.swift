@@ -26,7 +26,16 @@ class Touchpad: UIViewController{
         let oneTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.oneFingerTap(_:)))
         oneTapGestureRecognizer.numberOfTapsRequired = 1
         oneTapGestureRecognizer.numberOfTouchesRequired = 1
+//        view.addGestureRecognizer(oneTapGestureRecognizer)
+        
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.doubleTap(_:)))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        doubleTapGestureRecognizer.numberOfTouchesRequired = 2
+//        view.addGestureRecognizer(doubleTapGestureRecognizer)
+        
+        oneTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         view.addGestureRecognizer(oneTapGestureRecognizer)
+        view.addGestureRecognizer(doubleTapGestureRecognizer)
         
         let twoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.twoFingersTap(_:)))
         twoTapGestureRecognizer.numberOfTouchesRequired = 2
@@ -54,6 +63,12 @@ class Touchpad: UIViewController{
         send(message: "left_mouse_click")
         Vibration.medium.vibrate()
     }
+    
+    @objc func doubleTap(_ sender: UITapGestureRecognizer){
+        print("double tap")
+        send(message: "double_click")
+    }
+    
     @objc func twoFingersTap(_ sender: UITapGestureRecognizer){
         send(message: "right_mouse_click")
     }
