@@ -45,8 +45,20 @@
 		B4ECC3022C147E0C00E77A6A /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B480DE9D2E685C27005D5735 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SUI/Components/BackgroundView.swift,
+				SUI/Components/GlassView.swift,
+				SUI/MainScreen/View/MainScreenView.swift,
+			);
+			target = B47746DC2BB4A73F00EE8BEE /* tap&sendTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B49085902DE877C100B97565 /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
+		B49085902DE877C100B97565 /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B480DE9D2E685C27005D5735 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
