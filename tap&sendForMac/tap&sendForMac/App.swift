@@ -30,7 +30,7 @@ struct SimpleBrowserApp: App {
     @StateObject private var viewModel = MultipeerViewModel()
     var body: some Scene {
 //        WindowGroup {
-//            ContentView(
+//            TestView(
 //                viewModel: viewModel
 //            )
 //        }

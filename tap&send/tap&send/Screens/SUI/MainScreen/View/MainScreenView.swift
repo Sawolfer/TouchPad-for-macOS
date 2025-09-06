@@ -23,20 +23,7 @@ struct MainScreenView: View {
             .frame(width: 300)
             Spacer()
 
-            if !viewModel.connectedDevice {
-                VStack {
-                    Text("Your Pairing Code:")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    Text(viewModel.currentPairingCode)
-                        .font(.system(size: 24, weight: .bold, design: .monospaced))
-                        .foregroundColor(.yellow)
-                        .padding()
-                        .background(Color.black.opacity(0.3))
-                        .cornerRadius(8)
-                }
-                .padding()
-            }
+//            pairingCode
         }
         .dotsBackground()
         .sheet(isPresented: $viewModel.showConnectionSheet) {
@@ -60,6 +47,7 @@ struct MainScreenView: View {
             Text(viewModel.pairingStatus)
         }
     }
+
 
     var welcomeLabel: some View {
         Text("Welcome to Cursor app")
@@ -124,6 +112,24 @@ struct MainScreenView: View {
             .foregroundStyle(.yellow)
             .padding()
             .glass(cornerRadius: 20)
+        }
+    }
+
+    @ViewBuilder
+    var pairingCode: some View {
+        if !viewModel.connectedDevice {
+            VStack {
+                Text("Your Pairing Code:")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                Text(viewModel.currentPairingCode)
+                    .font(.system(size: 24, weight: .bold, design: .monospaced))
+                    .foregroundColor(.yellow)
+                    .padding()
+                    .background(Color.black.opacity(0.3))
+                    .cornerRadius(8)
+            }
+            .padding()
         }
     }
 }

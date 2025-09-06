@@ -26,7 +26,7 @@ final class MainScreenViewModel: NSObject, ObservableObject {
     @Published var pairingStatus: String = ""
 
     // MARK: - Multipeer Connectivity Properties
-    private let serviceType = "mctest"
+    private let serviceType = "mcursor"
     private var peerID: MCPeerID
     private var session: MCSession?
     private var browser: MCNearbyServiceBrowser?
@@ -45,7 +45,6 @@ final class MainScreenViewModel: NSObject, ObservableObject {
 
     // MARK: - Pairing Code Management
     private func generatePairingCode() {
-        // Generate a 6-digit random code
         currentPairingCode = String(Int.random(in: 100000...999999))
     }
 
@@ -67,7 +66,6 @@ final class MainScreenViewModel: NSObject, ObservableObject {
     }
 
     private func startAdvertising() {
-        // Include pairing code in discovery info
         let discoveryInfo = ["pairingCode": currentPairingCode]
         advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: discoveryInfo, serviceType: serviceType)
         advertiser?.delegate = self
@@ -81,7 +79,7 @@ final class MainScreenViewModel: NSObject, ObservableObject {
         stopServices()
         connectedDevice = false
         connectionState = .notConnected
-        generatePairingCode() // Generate new code on disconnect
+        generatePairingCode()
     }
 
     private func stopServices() {
@@ -94,7 +92,6 @@ final class MainScreenViewModel: NSObject, ObservableObject {
     func invitePeer(_ peer: PeerDevice) {
         guard let session = session else { return }
 
-        // Store the selected peer and show pairing alert
         selectedPeer = peer
         showPairingAlert = true
         pairingStatus = "Enter the pairing code for \(peer.peerID.displayName)"
@@ -104,12 +101,10 @@ final class MainScreenViewModel: NSObject, ObservableObject {
         guard let peer = selectedPeer, let session = session else { return }
 
         if code == peer.pairingCode {
-            // Codes match, proceed with connection
             browser?.invitePeer(peer.peerID, to: session, withContext: nil, timeout: 30)
             connectionState = .connecting
             pairingStatus = "Connecting..."
         } else {
-            // Codes don't match
             pairingStatus = "Incorrect pairing code. Please try again."
         }
     }

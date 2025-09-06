@@ -15,7 +15,7 @@ import UIKit
 
 final class TouchpadViewModel: NSObject {
     // MARK: - Properties
-    private let serviceType = "mctest"
+    private let serviceType = "mcursor"
     private var peerID: MCPeerID
     private var session: MCSession?
     private var browser: MCNearbyServiceBrowser?

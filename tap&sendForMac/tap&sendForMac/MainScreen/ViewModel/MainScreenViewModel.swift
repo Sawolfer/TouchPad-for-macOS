@@ -15,7 +15,7 @@ class MultipeerViewModel: NSObject, ObservableObject {
     let mouse = MouseActions()
 
     // MARK: - Multipeer Properties
-    private let serviceType = "mctest"
+    private let serviceType = "mcursor"
     private var multipeerSession: MCSession?
     private let peerID = MCPeerID(displayName: Host.current().localizedName ?? "Unknown")
     private var browser: MCNearbyServiceBrowser?
@@ -49,7 +49,6 @@ class MultipeerViewModel: NSObject, ObservableObject {
     }
 
     func confirmPairing() {
-        // This would be called when user confirms they want to connect to the found peer
         showPairingAlert = false
     }
 
@@ -59,7 +58,6 @@ class MultipeerViewModel: NSObject, ObservableObject {
 
     // MARK: - Private Methods
     private func generatePairingCode() {
-        // Generate a 6-digit random code
         let code = String(Int.random(in: 100000...999999))
         pairingCode = code
     }
@@ -119,15 +117,17 @@ class MultipeerViewModel: NSObject, ObservableObject {
 extension MultipeerViewModel: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
-        case .connecting:
-            updateStatus("Connecting")
-        case .connected:
-            updateStatus("Connected")
-            showPairingAlert = false // Hide alert when connected
-        case .notConnected:
-            updateStatus("Not connected")
-        @unknown default:
-            updateStatus("Unknown state")
+            case .connecting:
+                updateStatus("Connecting")
+            case .connected:
+                updateStatus("Connected")
+                DispatchQueue.main.async{
+                    self.showPairingAlert = false
+                }
+            case .notConnected:
+                updateStatus("Not connected")
+            @unknown default:
+                updateStatus("Unknown state")
         }
     }
 
@@ -148,7 +148,6 @@ extension MultipeerViewModel: MCSessionDelegate {
 // MARK: - MCNearbyServiceAdvertiserDelegate
 extension MultipeerViewModel: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        // Always accept invitations for this implementation
         invitationHandler(true, multipeerSession)
     }
 }
@@ -158,26 +157,21 @@ extension MultipeerViewModel: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
         guard let multipeerSession = multipeerSession else { return }
 
-        // Check if the found peer has a matching pairing code
         if let peerCode = info?["pairingCode"] {
-            // Show pairing confirmation alert to user
             showPairingRequest(peerName: peerID.displayName, code: peerCode)
-
-            // Automatically invite after showing the alert (or wait for user confirmation)
             browser.invitePeer(peerID, to: multipeerSession, withContext: nil, timeout: 30.0)
         }
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        // Hide pairing alert if the peer is lost
         if self.foundPeerName == peerID.displayName {
             showPairingAlert = false
         }
     }
 }
 
-// MARK: - SwiftUI View
-struct ContentView: View {
+// MARK: - TestView
+struct TestView: View {
     @ObservedObject var viewModel: MultipeerViewModel
 
     var body: some View {
@@ -185,8 +179,6 @@ struct ContentView: View {
             Text("MultiPeer Connection")
                 .font(.title2)
                 .padding(.top)
-
-            // Pairing Code Display
             VStack {
                 Text("Your Pairing Code:")
                     .font(.headline)
@@ -216,12 +208,6 @@ struct ContentView: View {
                 }
                 .disabled(!viewModel.isConnected)
                 .buttonStyle(.bordered)
-
-//                Button("Send Test") {
-//                    viewModel.sendMessage()
-//                }
-//                .disabled(!viewModel.isConnected)
-//                .buttonStyle(.bordered)
             }
             .padding()
         }

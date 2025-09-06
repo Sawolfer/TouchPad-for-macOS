@@ -17,10 +17,10 @@ struct ConnectionSheetView: View {
                 .fontWeight(.bold)
                 .padding()
 
-            Text("Your code: \(viewModel.currentPairingCode)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .padding(.bottom)
+//            Text("Your code: \(viewModel.currentPairingCode)")
+//                .font(.subheadline)
+//                .foregroundColor(.gray)
+//                .padding(.bottom)
 
             Spacer()
 
