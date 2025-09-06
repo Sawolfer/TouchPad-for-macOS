@@ -30,10 +30,14 @@ struct SimpleBrowserApp: App {
     @StateObject private var viewModel = MultipeerViewModel()
     var body: some Scene {
 //        WindowGroup {
-//            MainScreenView()
+//            ContentView(
+//                viewModel: viewModel
+//            )
 //        }
         MenuBarExtra {
-            MainScreenView()
+            MainScreenView(
+                viewModel: viewModel
+            )
         } label: {
             Label("Cursor", systemImage: "cursorarrow.rays")
         }

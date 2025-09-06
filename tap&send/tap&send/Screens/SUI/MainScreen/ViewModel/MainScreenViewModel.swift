@@ -18,8 +18,12 @@ final class MainScreenViewModel: NSObject, ObservableObject {
     // MARK: - Published Properties
     @Published var connectedDevice = false
     @Published var connectionState: ConnectionState = .notConnected
-    @Published var availablePeers: [MCPeerID] = []
+    @Published var availablePeers: [PeerDevice] = []
     @Published var showConnectionSheet = false
+    @Published var showPairingAlert = false
+    @Published var currentPairingCode = ""
+    @Published var selectedPeer: PeerDevice?
+    @Published var pairingStatus: String = ""
 
     // MARK: - Multipeer Connectivity Properties
     private let serviceType = "mctest"
@@ -34,8 +38,15 @@ final class MainScreenViewModel: NSObject, ObservableObject {
     override init() {
         self.peerID = MCPeerID(displayName: UIDevice.current.name)
         super.init()
+        generatePairingCode()
         setupSession()
         startServices()
+    }
+
+    // MARK: - Pairing Code Management
+    private func generatePairingCode() {
+        // Generate a 6-digit random code
+        currentPairingCode = String(Int.random(in: 100000...999999))
     }
 
     // MARK: - Session Management
@@ -56,7 +67,9 @@ final class MainScreenViewModel: NSObject, ObservableObject {
     }
 
     private func startAdvertising() {
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
+        // Include pairing code in discovery info
+        let discoveryInfo = ["pairingCode": currentPairingCode]
+        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: discoveryInfo, serviceType: serviceType)
         advertiser?.delegate = self
         advertiser?.startAdvertisingPeer()
     }
@@ -68,6 +81,7 @@ final class MainScreenViewModel: NSObject, ObservableObject {
         stopServices()
         connectedDevice = false
         connectionState = .notConnected
+        generatePairingCode() // Generate new code on disconnect
     }
 
     private func stopServices() {
@@ -77,10 +91,33 @@ final class MainScreenViewModel: NSObject, ObservableObject {
     }
 
     // MARK: - Peer Management
-    func invitePeer(_ peer: MCPeerID) {
+    func invitePeer(_ peer: PeerDevice) {
         guard let session = session else { return }
-        browser?.invitePeer(peer, to: session, withContext: nil, timeout: 10)
-        connectionState = .connecting
+
+        // Store the selected peer and show pairing alert
+        selectedPeer = peer
+        showPairingAlert = true
+        pairingStatus = "Enter the pairing code for \(peer.peerID.displayName)"
+    }
+
+    func confirmPairing(with code: String) {
+        guard let peer = selectedPeer, let session = session else { return }
+
+        if code == peer.pairingCode {
+            // Codes match, proceed with connection
+            browser?.invitePeer(peer.peerID, to: session, withContext: nil, timeout: 30)
+            connectionState = .connecting
+            pairingStatus = "Connecting..."
+        } else {
+            // Codes don't match
+            pairingStatus = "Incorrect pairing code. Please try again."
+        }
+    }
+
+    func cancelPairing() {
+        selectedPeer = nil
+        showPairingAlert = false
+        pairingStatus = ""
     }
 
     // MARK: - Message Handling
@@ -107,9 +144,19 @@ final class MainScreenViewModel: NSObject, ObservableObject {
         }
     }
 
-    func handlePeerSelection(_ peer: MCPeerID) {
+    func handlePeerSelection(_ peer: PeerDevice) {
         invitePeer(peer)
-        showConnectionSheet = false
+    }
+}
+
+// MARK: - Data Models
+struct PeerDevice: Identifiable, Equatable {
+    let id = UUID()
+    let peerID: MCPeerID
+    let pairingCode: String
+
+    static func == (lhs: PeerDevice, rhs: PeerDevice) -> Bool {
+        lhs.peerID == rhs.peerID
     }
 }
 
@@ -121,11 +168,14 @@ extension MainScreenViewModel: MCSessionDelegate {
             case .connected:
                 self.connectedDevice = true
                 self.connectionState = .connected
+                self.showPairingAlert = false
+                self.pairingStatus = ""
             case .connecting:
                 self.connectionState = .connecting
             case .notConnected:
                 self.connectedDevice = false
                 self.connectionState = .notConnected
+                self.generatePairingCode() // Generate new code on disconnect
             @unknown default:
                 break
             }
@@ -149,6 +199,7 @@ extension MainScreenViewModel: MCSessionDelegate {
 // MARK: - MCNearbyServiceAdvertiserDelegate
 extension MainScreenViewModel: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        // Always accept invitations (pairing code verification happens on browser side)
         invitationHandler(true, session)
     }
 }
@@ -157,16 +208,22 @@ extension MainScreenViewModel: MCNearbyServiceAdvertiserDelegate {
 extension MainScreenViewModel: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
         DispatchQueue.main.async {
-            if !self.availablePeers.contains(peerID) {
-                self.availablePeers.append(peerID)
+            // Extract pairing code from discovery info
+            let pairingCode = info?["pairingCode"] ?? "Unknown"
+            let peerDevice = PeerDevice(peerID: peerID, pairingCode: pairingCode)
+
+            if !self.availablePeers.contains(where: { $0.peerID == peerID }) {
+                self.availablePeers.append(peerDevice)
             }
         }
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         DispatchQueue.main.async {
-            if let index = self.availablePeers.firstIndex(of: peerID) {
-                self.availablePeers.remove(at: index)
+            self.availablePeers.removeAll { $0.peerID == peerID }
+            // If the lost peer was the selected one, cancel pairing
+            if self.selectedPeer?.peerID == peerID {
+                self.cancelPairing()
             }
         }
     }

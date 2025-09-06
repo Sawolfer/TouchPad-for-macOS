@@ -45,7 +45,7 @@ class MultipeerViewModel: NSObject, ObservableObject {
     }
 
     func sendMessage() {
-        send(message: "леее здарова я \(peerID.displayName)")
+        send(message: "\(peerID.displayName)")
     }
 
     func confirmPairing() {
@@ -178,7 +178,7 @@ extension MultipeerViewModel: MCNearbyServiceBrowserDelegate {
 
 // MARK: - SwiftUI View
 struct ContentView: View {
-    @StateObject private var viewModel = MultipeerViewModel()
+    @ObservedObject var viewModel: MultipeerViewModel
 
     var body: some View {
         VStack(spacing: 20) {
@@ -217,11 +217,11 @@ struct ContentView: View {
                 .disabled(!viewModel.isConnected)
                 .buttonStyle(.bordered)
 
-                Button("Send Test") {
-                    viewModel.sendMessage()
-                }
-                .disabled(!viewModel.isConnected)
-                .buttonStyle(.bordered)
+//                Button("Send Test") {
+//                    viewModel.sendMessage()
+//                }
+//                .disabled(!viewModel.isConnected)
+//                .buttonStyle(.bordered)
             }
             .padding()
         }
@@ -237,9 +237,4 @@ struct ContentView: View {
             Text("Pair with '\(viewModel.foundPeerName)'?\nTheir code: \(viewModel.foundPeerCode)\nYour code: \(viewModel.pairingCode)")
         }
     }
-}
-
-// MARK: - Preview
-#Preview {
-    ContentView()
 }

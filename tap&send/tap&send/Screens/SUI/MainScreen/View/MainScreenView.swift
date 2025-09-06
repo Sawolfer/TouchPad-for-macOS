@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+// MARK: - Views
 struct MainScreenView: View {
     @StateObject private var viewModel = MainScreenViewModel()
+    @State private var pairingCodeInput = ""
 
     var body: some View {
         VStack {
@@ -18,15 +20,44 @@ struct MainScreenView: View {
                 connectionStack
                 settingsButton
             }
-            .frame(
-                width: 300
-            )
+            .frame(width: 300)
             Spacer()
+
+            if !viewModel.connectedDevice {
+                VStack {
+                    Text("Your Pairing Code:")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Text(viewModel.currentPairingCode)
+                        .font(.system(size: 24, weight: .bold, design: .monospaced))
+                        .foregroundColor(.yellow)
+                        .padding()
+                        .background(Color.black.opacity(0.3))
+                        .cornerRadius(8)
+                }
+                .padding()
+            }
         }
         .dotsBackground()
         .sheet(isPresented: $viewModel.showConnectionSheet) {
             ConnectionSheetView(viewModel: viewModel)
                 .presentationDetents([.medium])
+        }
+        .alert("Pairing Required", isPresented: $viewModel.showPairingAlert) {
+            TextField("Enter pairing code", text: $pairingCodeInput)
+                .keyboardType(.numberPad)
+
+            Button("Pair") {
+                viewModel.confirmPairing(with: pairingCodeInput)
+                pairingCodeInput = ""
+            }
+
+            Button("Cancel", role: .cancel) {
+                viewModel.cancelPairing()
+                pairingCodeInput = ""
+            }
+        } message: {
+            Text(viewModel.pairingStatus)
         }
     }
 

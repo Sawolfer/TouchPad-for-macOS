@@ -12,26 +12,37 @@ struct ConnectionSheetView: View {
 
     var body: some View {
         VStack {
-            Text("Choose your Device")
+            Text("Available Devices")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding()
+
+            Text("Your code: \(viewModel.currentPairingCode)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .padding(.bottom)
+
             Spacer()
 
             if viewModel.availablePeers.isEmpty {
-                Text("No devices found")
+                Text("Searching for devices...")
                     .foregroundColor(.gray)
                     .padding()
             } else {
-                List(viewModel.availablePeers, id: \.displayName) { peer in
+                List(viewModel.availablePeers) { peer in
                     Button(action: {
                         viewModel.handlePeerSelection(peer)
                     }) {
                         HStack {
                             Image(systemName: "laptopcomputer")
-                            Text(peer.displayName)
+                            VStack(alignment: .leading) {
+                                Text(peer.peerID.displayName)
+//                                Text("Code: \(peer.pairingCode)")
+//                                    .font(.caption)
+//                                    .foregroundColor(.gray)
+                            }
                             Spacer()
-                            if viewModel.connectionState == .connecting && viewModel.availablePeers.first == peer {
+                            if viewModel.connectionState == .connecting && viewModel.selectedPeer?.peerID == peer.peerID {
                                 ProgressView()
                             }
                         }

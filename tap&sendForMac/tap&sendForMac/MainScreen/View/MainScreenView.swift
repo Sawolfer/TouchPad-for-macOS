@@ -8,16 +8,31 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    @StateObject private var viewModel = MultipeerViewModel()
+    @ObservedObject var viewModel: MultipeerViewModel
 
     var body: some View {
         VStack {
             connectionLabel
+            pairingCode
             if viewModel.isConnected {
                 disconnectButton
             }
             quitButotn
         }
+    }
+
+    var pairingCode: some View {
+        VStack {
+            Text("Your Pairing Code:")
+                .font(.headline)
+            Text(viewModel.pairingCode)
+                .font(.system(size: 24, weight: .bold, design: .monospaced))
+                .foregroundColor(.blue)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(8)
+        }
+        .padding()
     }
 
     var connectionLabel: some View {
