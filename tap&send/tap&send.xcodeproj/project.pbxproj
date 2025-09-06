@@ -51,6 +51,7 @@
 			membershipExceptions = (
 				SUI/Components/BackgroundView.swift,
 				SUI/Components/GlassView.swift,
+				SUI/MainScreen/View/ConnectionSheetView.swift,
 				SUI/MainScreen/View/MainScreenView.swift,
 			);
 			target = B47746DC2BB4A73F00EE8BEE /* tap&sendTests */;

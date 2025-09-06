@@ -1,33 +1,32 @@
 //
-//  TouchpadViewModel.swift
+//  MainScreenViewModel.swift
 //  tap&send
 //
-//  Created by Савва Пономарев on 29.05.2025.
+//  Created by Савва Пономарев on 03.09.2025.
 //
 
+import SwiftUI
 import MultipeerConnectivity
-import UIKit
 
-//protocol TouchpadViewModelDelegate: AnyObject {
-//    func connectionStateChanged(_ state: MCSessionState)
-//    func receivedMessage(_ message: String)
-//}
+// MARK: - ViewModel
+protocol TouchpadViewModelDelegate: AnyObject {
+    func connectionStateChanged(_ state: MCSessionState)
+    func receivedMessage(_ message: String)
+}
 
-final class TouchpadViewModel: NSObject {
-    // MARK: - Properties
+final class MainScreenViewModel: NSObject, ObservableObject {
+    // MARK: - Published Properties
+    @Published var connectedDevice = false
+    @Published var connectionState: ConnectionState = .notConnected
+    @Published var availablePeers: [MCPeerID] = []
+    @Published var showConnectionSheet = false
+
+    // MARK: - Multipeer Connectivity Properties
     private let serviceType = "mctest"
     private var peerID: MCPeerID
     private var session: MCSession?
     private var browser: MCNearbyServiceBrowser?
     private var advertiser: MCNearbyServiceAdvertiser?
-    
-    // Store discovered peers
-    private var _availablePeers: [MCPeerID] = []
-    
-    // Public property to access available peers
-    var availablePeers: [MCPeerID] {
-        return _availablePeers
-    }
 
     weak var delegate: TouchpadViewModelDelegate?
 
@@ -36,6 +35,7 @@ final class TouchpadViewModel: NSObject {
         self.peerID = MCPeerID(displayName: UIDevice.current.name)
         super.init()
         setupSession()
+        startServices()
     }
 
     // MARK: - Session Management
@@ -44,16 +44,18 @@ final class TouchpadViewModel: NSObject {
         session?.delegate = self
     }
 
-    func startBrowsing() {
-        stopServices()
-        _availablePeers.removeAll()
+    func startServices() {
+        startBrowsing()
+        startAdvertising()
+    }
+
+    private func startBrowsing() {
         browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
         browser?.delegate = self
         browser?.startBrowsingForPeers()
     }
 
-    func startAdvertising() {
-        stopServices()
+    private func startAdvertising() {
         advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
         advertiser?.delegate = self
         advertiser?.startAdvertisingPeer()
@@ -64,6 +66,8 @@ final class TouchpadViewModel: NSObject {
             session?.cancelConnectPeer($0)
         }
         stopServices()
+        connectedDevice = false
+        connectionState = .notConnected
     }
 
     private func stopServices() {
@@ -71,11 +75,12 @@ final class TouchpadViewModel: NSObject {
         advertiser?.stopAdvertisingPeer()
         session?.disconnect()
     }
-    
+
     // MARK: - Peer Management
     func invitePeer(_ peer: MCPeerID) {
         guard let session = session else { return }
         browser?.invitePeer(peer, to: session, withContext: nil, timeout: 10)
+        connectionState = .connecting
     }
 
     // MARK: - Message Handling
@@ -93,56 +98,46 @@ final class TouchpadViewModel: NSObject {
         }
     }
 
-    // MARK: - Gesture Handlers
-    func handleOneFingerTap() {
-        send(message: "left_mouse_click")
-        Vibration.medium.vibrate()
-    }
-
-    func handleTwoFingerTap() {
-        send(message: "right_mouse_click")
-        Vibration.medium.vibrate()
-    }
-
-    func handleLongPress() {
-        send(message: "long_touchpad_touch")
-        Vibration.heavy.vibrate()
-    }
-
-    func handleOneFingerPan(velocity: CGPoint) {
-        let msg = String(format: "%.5f", velocity.x) + " " + String(format: "%.5f", velocity.y)
-        send(message: msg)
-    }
-
-    func handleTwoFingerPan(velocity: CGPoint) {
-        let msg = "two_fingers " + String(format: "%.5f", velocity.x) + " " + String(format: "%.5f", velocity.y)
-        send(message: msg)
-    }
-
-    func handleThreeFingerPan(translation: CGPoint) {
-        let angle = atan2(translation.y, translation.x)
-
-        if angle > -0.5 && angle <= 0.5 {
-            send(message: "three_fingers_swipe_right")
-        } else if angle > -2 && angle <= -1 {
-            send(message: "three_fingers_swipe_up")
-        } else if abs(angle) >= 2.5 {
-            send(message: "three_fingers_swipe_left")
+    // MARK: - UI Actions
+    func toggleConnection() {
+        if connectedDevice {
+            disconnect()
+        } else {
+            showConnectionSheet = true
         }
+    }
 
-        usleep(500)
+    func handlePeerSelection(_ peer: MCPeerID) {
+        invitePeer(peer)
+        showConnectionSheet = false
     }
 }
 
 // MARK: - MCSessionDelegate
-extension TouchpadViewModel: MCSessionDelegate {
+extension MainScreenViewModel: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        delegate?.connectionStateChanged(state)
+        DispatchQueue.main.async {
+            switch state {
+            case .connected:
+                self.connectedDevice = true
+                self.connectionState = .connected
+            case .connecting:
+                self.connectionState = .connecting
+            case .notConnected:
+                self.connectedDevice = false
+                self.connectionState = .notConnected
+            @unknown default:
+                break
+            }
+            self.delegate?.connectionStateChanged(state)
+        }
     }
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         if let message = try? JSONDecoder().decode(String.self, from: data) {
-            delegate?.receivedMessage(message)
+            DispatchQueue.main.async {
+                self.delegate?.receivedMessage(message)
+            }
         }
     }
 
@@ -152,23 +147,27 @@ extension TouchpadViewModel: MCSessionDelegate {
 }
 
 // MARK: - MCNearbyServiceAdvertiserDelegate
-extension TouchpadViewModel: MCNearbyServiceAdvertiserDelegate {
+extension MainScreenViewModel: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         invitationHandler(true, session)
     }
 }
 
 // MARK: - MCNearbyServiceBrowserDelegate
-extension TouchpadViewModel: MCNearbyServiceBrowserDelegate {
+extension MainScreenViewModel: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
-        if !_availablePeers.contains(peerID) {
-            _availablePeers.append(peerID)
+        DispatchQueue.main.async {
+            if !self.availablePeers.contains(peerID) {
+                self.availablePeers.append(peerID)
+            }
         }
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        if let index = _availablePeers.firstIndex(of: peerID) {
-            _availablePeers.remove(at: index)
+        DispatchQueue.main.async {
+            if let index = self.availablePeers.firstIndex(of: peerID) {
+                self.availablePeers.remove(at: index)
+            }
         }
     }
 }

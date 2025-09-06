@@ -11,6 +11,8 @@ struct MainScreenView: View {
     @State var connectedDevice = true
     @State var showConnectionSheet = false
 
+    @StateObject private var viewModel = MainScreenViewModel()
+
     var body: some View {
         VStack {
             welcomeLabel
@@ -20,8 +22,8 @@ struct MainScreenView: View {
             Spacer()
         }
         .dotsBackground()
-        .sheet(isPresented: $showConnectionSheet) {
-            Text("Choose your Device")
+        .sheet(isPresented: $viewModel.showConnectionSheet) {
+            ConnectionSheetView(viewModel: viewModel)
                 .presentationDetents([.medium])
         }
     }
@@ -36,14 +38,11 @@ struct MainScreenView: View {
 
     var connectButton: some View {
         Button {
-            showConnectionSheet = true
-//            withAnimation(.spring(duration: 0.3, bounce: 0.5)) {
-//                connectedDevice.toggle()
-//            }
+            viewModel.toggleConnection()
         } label: {
             HStack {
-                Image(systemName: connectedDevice ? "laptopcomputer.slash" : "laptopcomputer")
-                Text(!connectedDevice ? "Connect" : "Disconnect")
+                Image(systemName: viewModel.connectedDevice ? "laptopcomputer.slash" : "laptopcomputer")
+                Text(viewModel.connectedDevice ? "Disconnect" : "Connect")
             }
             .foregroundStyle(.yellow)
             .padding()
