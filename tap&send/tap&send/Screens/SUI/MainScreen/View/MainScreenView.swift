@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Views
 struct MainScreenView: View {
-    @StateObject private var viewModel = MainScreenViewModel()
+    @ObservedObject var viewModel: MainScreenViewModel
     @State private var pairingCodeInput = ""
 
     var body: some View {
@@ -131,6 +131,16 @@ struct MainScreenView: View {
 // MARK: - Preview Provider
 struct MainScreenPreview: PreviewProvider {
     static var previews: some View {
-        MainScreenView()
+        PreviewWrapper()
+    }
+
+    struct PreviewWrapper: View {
+        @StateObject var viewModel = MainScreenViewModel()
+
+        var body: some View {
+            MainScreenView(
+                viewModel: viewModel
+            )
+        }
     }
 }
