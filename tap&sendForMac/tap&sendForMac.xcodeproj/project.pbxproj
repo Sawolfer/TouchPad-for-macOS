@@ -3,14 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B450A7092BB6F7740009E942 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A7082BB6F7740009E942 /* AppDelegate.swift */; };
-		B450A70B2BB6F7740009E942 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A70A2BB6F7740009E942 /* ViewController.swift */; };
+		B450A7092BB6F7740009E942 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A7082BB6F7740009E942 /* App.swift */; };
 		B450A70D2BB6F7750009E942 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B450A70C2BB6F7750009E942 /* Assets.xcassets */; };
-		B450A7102BB6F7750009E942 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B450A70E2BB6F7750009E942 /* Main.storyboard */; };
 		B450A71B2BB6F7750009E942 /* tap_sendForMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A71A2BB6F7750009E942 /* tap_sendForMacTests.swift */; };
 		B450A7252BB6F7750009E942 /* tap_sendForMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A7242BB6F7750009E942 /* tap_sendForMacUITests.swift */; };
 		B450A7272BB6F7750009E942 /* tap_sendForMacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450A7262BB6F7750009E942 /* tap_sendForMacUITestsLaunchTests.swift */; };
@@ -37,10 +35,8 @@
 
 /* Begin PBXFileReference section */
 		B450A7052BB6F7740009E942 /* tap&sendForMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tap&sendForMac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B450A7082BB6F7740009E942 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B450A70A2BB6F7740009E942 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B450A7082BB6F7740009E942 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		B450A70C2BB6F7750009E942 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B450A70F2BB6F7750009E942 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B450A7112BB6F7750009E942 /* tap_sendForMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tap_sendForMac.entitlements; sourceTree = "<group>"; };
 		B450A7162BB6F7750009E942 /* tap&sendForMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tap&sendForMacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B450A71A2BB6F7750009E942 /* tap_sendForMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendForMacTests.swift; sourceTree = "<group>"; };
@@ -50,6 +46,10 @@
 		B495D18A2BB8998700771797 /* ActionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTypes.swift; sourceTree = "<group>"; };
 		B495D18C2BB899B500771797 /* MouseActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseActions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B480DF0D2E6C949F005D5735 /* MainScreen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MainScreen; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B450A7022BB6F7740009E942 /* Frameworks */ = {
@@ -99,10 +99,9 @@
 		B450A7072BB6F7740009E942 /* tap&sendForMac */ = {
 			isa = PBXGroup;
 			children = (
-				B450A7082BB6F7740009E942 /* AppDelegate.swift */,
-				B450A70A2BB6F7740009E942 /* ViewController.swift */,
+				B480DF0D2E6C949F005D5735 /* MainScreen */,
+				B450A7082BB6F7740009E942 /* App.swift */,
 				B450A70C2BB6F7750009E942 /* Assets.xcassets */,
-				B450A70E2BB6F7750009E942 /* Main.storyboard */,
 				B450A7112BB6F7750009E942 /* tap_sendForMac.entitlements */,
 				B495D18A2BB8998700771797 /* ActionTypes.swift */,
 				B495D18C2BB899B500771797 /* MouseActions.swift */,
@@ -141,6 +140,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B480DF0D2E6C949F005D5735 /* MainScreen */,
 			);
 			name = "tap&sendForMac";
 			productName = "tap&sendForMac";
@@ -232,7 +234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B450A70D2BB6F7750009E942 /* Assets.xcassets in Resources */,
-				B450A7102BB6F7750009E942 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B495D18B2BB8998700771797 /* ActionTypes.swift in Sources */,
-				B450A70B2BB6F7740009E942 /* ViewController.swift in Sources */,
-				B450A7092BB6F7740009E942 /* AppDelegate.swift in Sources */,
+				B450A7092BB6F7740009E942 /* App.swift in Sources */,
 				B495D18D2BB899B500771797 /* MouseActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,17 +295,6 @@
 			targetProxy = B450A7212BB6F7750009E942 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B450A70E2BB6F7750009E942 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B450A70F2BB6F7750009E942 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B450A7282BB6F7750009E942 /* Debug */ = {

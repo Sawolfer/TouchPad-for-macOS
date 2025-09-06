@@ -9,8 +9,6 @@ import Cocoa
 import CoreGraphics
 
 class MouseActions : NSViewController{
-    
-    
     func MouseActions(){}
     
     func SignalMan(type : String){

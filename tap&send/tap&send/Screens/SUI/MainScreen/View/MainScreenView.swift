@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    @State var connectedDevice = true
-    @State var showConnectionSheet = false
-
     @StateObject private var viewModel = MainScreenViewModel()
 
     var body: some View {
         VStack {
             welcomeLabel
             Spacer()
-            connectButton
-            settingsButton
+            VStack {
+                connectionStack
+                settingsButton
+            }
+            .frame(
+                width: 300
+            )
             Spacer()
         }
         .dotsBackground()
@@ -36,13 +38,41 @@ struct MainScreenView: View {
             .multilineTextAlignment(.center)
     }
 
+    var connectionStack: some View {
+        HStack {
+            connectButton
+            if viewModel.connectedDevice {
+                startButton
+            }
+        }
+    }
+
+    var startButton: some View {
+        Button {
+            print("bebe")
+        } label: {
+            Text("Start")
+                .frame(maxWidth: .infinity)
+                .foregroundStyle(.yellow)
+                .padding()
+                .glass(cornerRadius: 20)
+        }
+        .buttonStyle(.plain)
+    }
+
     var connectButton: some View {
         Button {
-            viewModel.toggleConnection()
+            withAnimation(.smooth(duration: 0.3) ) {
+                viewModel.toggleConnection()
+            }
         } label: {
             HStack {
                 Image(systemName: viewModel.connectedDevice ? "laptopcomputer.slash" : "laptopcomputer")
-                Text(viewModel.connectedDevice ? "Disconnect" : "Connect")
+//                Text(!viewModel.connectedDevice ? "Connect" : "Disconnect")
+                if !viewModel.connectedDevice {
+                    Text("Connect")
+                        .frame(maxWidth: .infinity)
+                }
             }
             .foregroundStyle(.yellow)
             .padding()
@@ -59,6 +89,7 @@ struct MainScreenView: View {
                 Image(systemName: "gearshape.circle.fill")
                 Text("Settings")
             }
+            .frame(maxWidth: .infinity)
             .foregroundStyle(.yellow)
             .padding()
             .glass(cornerRadius: 20)
