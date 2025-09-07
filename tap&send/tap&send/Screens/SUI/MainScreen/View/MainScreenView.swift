@@ -81,9 +81,15 @@ struct MainScreenView: View {
 
     var connectButton: some View {
         Button {
+#if targetEnvironment(simulator)
+            withAnimation(.smooth(duration: 0.3) ) {
+                viewModel.connectedDevice.toggle()
+            }
+#else
             withAnimation(.smooth(duration: 0.3) ) {
                 viewModel.toggleConnection()
             }
+#endif
         } label: {
             HStack {
                 Image(systemName: viewModel.connectedDevice ? "laptopcomputer.slash" : "laptopcomputer")
