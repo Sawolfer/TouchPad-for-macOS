@@ -27,21 +27,11 @@ struct TouchpadScreenView: View {
         ZStack {
             menuCircle
                 .padding()
-                .gesture(
-                    DragGesture()
-                        .onChanged({ value in
-                            isDragging = true
-                            dragOffset = value.translation
-                        })
-                        .onEnded({ value in
-                            isDragging = false
-                            snapToNearestCorner(value: value)
-                            dragOffset = .zero
-                        })
-                )
         }
+        .ignoresSafeArea()
         .dotsBackground()
         .contentShape(Rectangle())
+        .navigationBarBackButtonHidden()
     }
 
     var menuCircle: some View {

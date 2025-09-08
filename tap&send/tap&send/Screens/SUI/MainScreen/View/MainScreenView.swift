@@ -13,38 +13,40 @@ struct MainScreenView: View {
     @State private var pairingCodeInput = ""
 
     var body: some View {
-        VStack {
-            welcomeLabel
-            Spacer()
+        NavigationStack {
             VStack {
-                connectionStack
-                settingsButton
-            }
-            .frame(width: 300)
-            Spacer()
+                welcomeLabel
+                Spacer()
+                VStack {
+                    connectionStack
+                    settingsButton
+                }
+                .frame(width: 300)
+                Spacer()
 
-//            pairingCode
-        }
-        .dotsBackground()
-        .sheet(isPresented: $viewModel.showConnectionSheet) {
-            ConnectionSheetView(viewModel: viewModel)
-                .presentationDetents([.medium])
-        }
-        .alert("Pairing Required", isPresented: $viewModel.showPairingAlert) {
-            TextField("Enter pairing code", text: $pairingCodeInput)
-                .keyboardType(.numberPad)
-
-            Button("Pair") {
-                viewModel.confirmPairing(with: pairingCodeInput)
-                pairingCodeInput = ""
+                //            pairingCode
             }
-
-            Button("Cancel", role: .cancel) {
-                viewModel.cancelPairing()
-                pairingCodeInput = ""
+            .dotsBackground()
+            .sheet(isPresented: $viewModel.showConnectionSheet) {
+                ConnectionSheetView(viewModel: viewModel)
+                    .presentationDetents([.medium])
             }
-        } message: {
-            Text(viewModel.pairingStatus)
+            .alert("Pairing Required", isPresented: $viewModel.showPairingAlert) {
+                TextField("Enter pairing code", text: $pairingCodeInput)
+                    .keyboardType(.numberPad)
+
+                Button("Pair") {
+                    viewModel.confirmPairing(with: pairingCodeInput)
+                    pairingCodeInput = ""
+                }
+
+                Button("Cancel", role: .cancel) {
+                    viewModel.cancelPairing()
+                    pairingCodeInput = ""
+                }
+            } message: {
+                Text(viewModel.pairingStatus)
+            }
         }
     }
 
@@ -62,13 +64,18 @@ struct MainScreenView: View {
             connectButton
             if viewModel.connectedDevice {
                 startButton
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing).combined(with: .opacity),
+                        removal: .move(edge: .trailing).combined(with: .opacity)
+                    ))
             }
         }
+        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: viewModel.connectedDevice)
     }
 
     var startButton: some View {
-        Button {
-            print("bebe")
+        NavigationLink {
+            TouchpadScreenView()
         } label: {
             Text("Start")
                 .frame(maxWidth: .infinity)
@@ -82,11 +89,12 @@ struct MainScreenView: View {
     var connectButton: some View {
         Button {
 #if targetEnvironment(simulator)
-            withAnimation(.smooth(duration: 0.3) ) {
-                viewModel.connectedDevice.toggle()
-            }
+//            withAnimation() {
+//                viewModel.connectedDevice.toggle()
+//            }
+            viewModel.connectedDevice.toggle()
 #else
-            withAnimation(.smooth(duration: 0.3) ) {
+            withAnimation() {
                 viewModel.toggleConnection()
             }
 #endif
