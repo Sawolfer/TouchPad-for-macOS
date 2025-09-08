@@ -29,11 +29,11 @@ import SwiftUI
 struct SimpleBrowserApp: App {
     @StateObject private var viewModel = MultipeerViewModel()
     var body: some Scene {
-//        WindowGroup {
-//            TestView(
-//                viewModel: viewModel
-//            )
-//        }
+        WindowGroup {
+            TestView(
+                viewModel: viewModel
+            )
+        }
         MenuBarExtra {
             MainScreenView(
                 viewModel: viewModel

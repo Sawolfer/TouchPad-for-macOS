@@ -105,11 +105,11 @@ final class GesturesView: UIViewController {
     
     @objc private func handleThreeFingerPan(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
-        case .ended:
-            let translation = sender.translation(in: view)
-            viewModel.handleThreeFingerPan(translation: translation)
-        default:
-            break
+            case .ended:
+                let translation = sender.translation(in: view)
+                viewModel.handleThreeFingerPan(translation: translation)
+            default:
+                break
         }
     }
 }

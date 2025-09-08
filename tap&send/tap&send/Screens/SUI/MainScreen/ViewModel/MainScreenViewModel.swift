@@ -170,7 +170,7 @@ extension MainScreenViewModel: MCSessionDelegate {
             case .notConnected:
                 self.connectedDevice = false
                 self.connectionState = .notConnected
-                self.generatePairingCode() // Generate new code on disconnect
+                self.generatePairingCode()
             @unknown default:
                 break
             }
