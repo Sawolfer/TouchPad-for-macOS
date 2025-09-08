@@ -15,7 +15,6 @@ enum ViewConstraint {
 }
 
 struct TouchpadScreenView: View {
-
     @Environment(\.dismiss) var dismiss
     @State var openedMenu = false
     @State var menuConstraint: ViewConstraint = .leftTop
@@ -23,8 +22,11 @@ struct TouchpadScreenView: View {
     @State private var dragOffset: CGSize = .zero
     @State private var isDragging = false
 
+    @ObservedObject var viewModel: TouchpadScreenViewModel
+
     var body: some View {
         ZStack {
+            GesturesViewRepresentable(viewModel: viewModel)
             menuCircle
                 .padding()
         }
@@ -141,11 +143,25 @@ struct TouchpadScreenView: View {
     }
 }
 
-
 // MARK: - Preview Provider
 struct TouchpadScreenPreview: PreviewProvider {
-
+    
     static var previews: some View {
-        TouchpadScreenView()
+        PreviewWrapper()
+    }
+
+    struct PreviewWrapper: View {
+        var viewModelMC: MainScreenViewModel
+        var viewModel: TouchpadScreenViewModel
+
+        init() {
+            self.viewModelMC = MainScreenViewModel()
+            self.viewModel = TouchpadScreenViewModel(
+                mvViewModel: viewModelMC
+            )
+        }
+        var body: some View {
+            TouchpadScreenView(viewModel: viewModel)
+        }
     }
 }

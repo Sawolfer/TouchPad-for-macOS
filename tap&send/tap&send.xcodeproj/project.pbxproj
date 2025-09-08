@@ -12,7 +12,6 @@
 		B47746E22BB4A73F00EE8BEE /* tap_sendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746E12BB4A73F00EE8BEE /* tap_sendTests.swift */; };
 		B47746EC2BB4A73F00EE8BEE /* tap_sendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746EB2BB4A73F00EE8BEE /* tap_sendUITests.swift */; };
 		B47746EE2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746ED2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift */; };
-		B4ECC3032C147E0C00E77A6A /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECC3022C147E0C00E77A6A /* Vibration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +41,6 @@
 		B47746E72BB4A73F00EE8BEE /* tap&sendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tap&sendUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47746EB2BB4A73F00EE8BEE /* tap_sendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITests.swift; sourceTree = "<group>"; };
 		B47746ED2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B4ECC3022C147E0C00E77A6A /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -114,7 +112,6 @@
 				B47746CA2BB4A73D00EE8BEE /* AppDelegate.swift */,
 				B47746D32BB4A73F00EE8BEE /* Assets.xcassets */,
 				B47746D82BB4A73F00EE8BEE /* Info.plist */,
-				B4ECC3022C147E0C00E77A6A /* Vibration.swift */,
 			);
 			path = "tap&send";
 			sourceTree = "<group>";
@@ -268,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4ECC3032C147E0C00E77A6A /* Vibration.swift in Sources */,
 				B47746CB2BB4A73D00EE8BEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

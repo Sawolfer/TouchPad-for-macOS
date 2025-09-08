@@ -12,6 +12,8 @@ struct MainScreenView: View {
     @ObservedObject var viewModel: MainScreenViewModel
     @State private var pairingCodeInput = ""
 
+    @State var forTest = false
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -24,7 +26,12 @@ struct MainScreenView: View {
                 .frame(width: 300)
                 Spacer()
 
-                //            pairingCode
+                Toggle("For Test", isOn: $forTest)
+                    .frame(width: 150)
+                    .padding()
+                    .foregroundStyle(.yellow)
+                    .glass(cornerRadius: 20)
+//            pairingCode
             }
             .dotsBackground()
             .sheet(isPresented: $viewModel.showConnectionSheet) {
@@ -75,7 +82,7 @@ struct MainScreenView: View {
 
     var startButton: some View {
         NavigationLink {
-            TouchpadScreenView()
+            TouchpadScreenBuilder.build(viewModel: viewModel)
         } label: {
             Text("Start")
                 .frame(maxWidth: .infinity)
@@ -94,8 +101,12 @@ struct MainScreenView: View {
 //            }
             viewModel.connectedDevice.toggle()
 #else
-            withAnimation() {
-                viewModel.toggleConnection()
+            if forTest {
+                viewModel.connectedDevice.toggle()
+            } else {
+                withAnimation() {
+                    viewModel.toggleConnection()
+                }
             }
 #endif
         } label: {

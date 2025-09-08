@@ -124,7 +124,7 @@ final class MainScreenViewModel: NSObject, ObservableObject {
         }
 
         do {
-            try session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
+            try session.send(messageData, toPeers: session.connectedPeers, with: .unreliable)
         } catch {
             print("Error sending message: \(error)")
         }
