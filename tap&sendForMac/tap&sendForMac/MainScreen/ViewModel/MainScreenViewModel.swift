@@ -138,7 +138,7 @@ extension MultipeerViewModel: MCSessionDelegate {
         }
     }
 
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}
+//    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}
 
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {}
 
@@ -221,6 +221,69 @@ struct TestView: View {
             }
         } message: {
             Text("Pair with '\(viewModel.foundPeerName)'?\nTheir code: \(viewModel.foundPeerCode)\nYour code: \(viewModel.pairingCode)")
+        }
+    }
+}
+
+// MARK: - Stream Handling
+extension MultipeerViewModel: StreamDelegate {
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        print("Received stream: \(streamName) from \(peerID.displayName)")
+
+        if streamName == "CommandStream" {
+            // Set up the input stream
+            stream.delegate = self
+            stream.schedule(in: .main, forMode: .default)
+            stream.open()
+
+            // Store the stream
+//            inputStreams[peerID] = stream
+        }
+    }
+
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        guard let inputStream = aStream as? InputStream else { return }
+
+        switch eventCode {
+        case .openCompleted:
+            print("Input stream opened")
+
+        case .hasBytesAvailable:
+            print("Bytes available in stream")
+            readFromStream(inputStream)
+
+        case .errorOccurred:
+            print("Stream error occurred")
+
+        case .endEncountered:
+            print("Stream ended")
+            inputStream.close()
+            inputStream.remove(from: .main, forMode: .default)
+
+        default:
+            break
+        }
+    }
+
+    private func readFromStream(_ inputStream: InputStream) {
+        let bufferSize = 1024
+        var buffer = [UInt8](repeating: 0, count: bufferSize)
+
+        while inputStream.hasBytesAvailable {
+            let bytesRead = inputStream.read(&buffer, maxLength: bufferSize)
+
+            if bytesRead > 0 {
+                if let message = String(bytes: buffer, encoding: .utf8)?.trimmingCharacters(in: .controlCharacters) {
+                    print("Received via stream: \(message)")
+                    DispatchQueue.main.async {
+                        self.mouse.SignalMan(type: message)
+                    }
+                }
+            } else if bytesRead == 0 {
+                print("End of stream reached")
+            } else {
+                print("Stream read error")
+            }
         }
     }
 }

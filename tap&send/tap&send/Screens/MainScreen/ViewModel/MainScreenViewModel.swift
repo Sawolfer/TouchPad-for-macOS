@@ -223,3 +223,64 @@ extension MainScreenViewModel: MCNearbyServiceBrowserDelegate {
         }
     }
 }
+
+// MARK: - Stream
+extension MainScreenViewModel {
+    func sendViaStream(message: String) {
+        guard let session = session, let connectedPeer = session.connectedPeers.first else { return }
+
+        do {
+            let outputStream = try session.startStream(withName: "CommandStream", toPeer: connectedPeer)
+            outputStream.delegate = self
+            outputStream.schedule(in: .main, forMode: .default)
+            outputStream.open()
+
+//            outputStreams[connectedPeer] = outputStream
+
+            sendMessageViaStream(message, outputStream: outputStream)
+
+        } catch {
+            print("Error creating stream: \(error)")
+        }
+    }
+
+    private func sendMessageViaStream(_ message: String, outputStream: OutputStream) {
+        guard outputStream.hasSpaceAvailable else {
+            print("No space available in stream")
+            return
+        }
+
+        // Convert string to data
+        guard let data = message.data(using: .utf8) else { return }
+
+        // Write data to stream
+        let bytesWritten = data.withUnsafeBytes { buffer in
+            outputStream.write(buffer.bindMemory(to: UInt8.self).baseAddress!, maxLength: data.count)
+        }
+
+        if bytesWritten > 0 {
+            print("Sent \(bytesWritten) bytes via stream")
+        } else {
+            print("Failed to write to stream")
+        }
+    }
+}
+
+extension MainScreenViewModel: StreamDelegate {
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        switch eventCode {
+            case .openCompleted:
+                print("Stream opened successfully")
+            case .hasSpaceAvailable:
+                print("Stream has space available")
+            case .errorOccurred:
+                print("Stream error occurred")
+            case .endEncountered:
+                print("Stream ended")
+                aStream.close()
+                aStream.remove(from: .main, forMode: .default)
+            default:
+                break
+        }
+    }
+}
