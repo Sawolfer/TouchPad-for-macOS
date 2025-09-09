@@ -21,16 +21,19 @@ struct MainScreenView: View {
                 Spacer()
                 VStack {
                     connectionStack
-                    settingsButton
+//                    settingsButton
+                    aboutAppButton
                 }
                 .frame(width: 300)
                 Spacer()
 
+#if DEBUG
                 Toggle("For Test", isOn: $forTest)
                     .frame(width: 150)
                     .padding()
                     .foregroundStyle(.yellow)
                     .glass(cornerRadius: 20)
+#endif
 //            pairingCode
             }
             .dotsBackground()
@@ -95,24 +98,22 @@ struct MainScreenView: View {
 
     var connectButton: some View {
         Button {
-#if targetEnvironment(simulator)
-//            withAnimation() {
-//                viewModel.connectedDevice.toggle()
-//            }
-            viewModel.connectedDevice.toggle()
-#else
-            if forTest {
+#if DEBUG
+            if forTest{
                 viewModel.connectedDevice.toggle()
             } else {
                 withAnimation() {
                     viewModel.toggleConnection()
                 }
             }
+#else
+            withAnimation() {
+                viewModel.toggleConnection()
+            }
 #endif
         } label: {
             HStack {
                 Image(systemName: viewModel.connectedDevice ? "laptopcomputer.slash" : "laptopcomputer")
-//                Text(!viewModel.connectedDevice ? "Connect" : "Disconnect")
                 if !viewModel.connectedDevice {
                     Text("Connect")
                         .frame(maxWidth: .infinity)
@@ -123,6 +124,21 @@ struct MainScreenView: View {
             .glass(cornerRadius: 20)
         }
         .buttonStyle(.plain)
+    }
+
+    var aboutAppButton: some View {
+        Button {
+            print("About App")
+        } label: {
+            HStack {
+                Image(systemName: "exclamationmark.circle.fill")
+                Text("About App")
+            }
+            .frame(maxWidth: .infinity)
+            .foregroundStyle(.yellow)
+            .padding()
+            .glass(cornerRadius: 20)
+        }
     }
 
     var settingsButton: some View {

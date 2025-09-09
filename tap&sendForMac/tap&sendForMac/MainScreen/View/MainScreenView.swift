@@ -27,7 +27,7 @@ struct MainScreenView: View {
                 .font(.headline)
             Text(viewModel.pairingCode)
                 .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundColor(.blue)
+                .foregroundColor(.yellow)
                 .padding()
                 .background(Color.gray.opacity(0.1))
                 .cornerRadius(8)
