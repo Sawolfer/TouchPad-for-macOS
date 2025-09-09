@@ -12,6 +12,7 @@
 		B47746E22BB4A73F00EE8BEE /* tap_sendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746E12BB4A73F00EE8BEE /* tap_sendTests.swift */; };
 		B47746EC2BB4A73F00EE8BEE /* tap_sendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746EB2BB4A73F00EE8BEE /* tap_sendUITests.swift */; };
 		B47746EE2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47746ED2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift */; };
+		B4F6F46A2E70236800928AC9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B4F6F4692E70236800928AC9 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B47746C72BB4A73D00EE8BEE /* tap&send.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tap&send.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B47746C72BB4A73D00EE8BEE /* iCursor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCursor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47746CA2BB4A73D00EE8BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B47746D32BB4A73F00EE8BEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B47746D82BB4A73F00EE8BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +42,7 @@
 		B47746E72BB4A73F00EE8BEE /* tap&sendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tap&sendUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47746EB2BB4A73F00EE8BEE /* tap_sendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITests.swift; sourceTree = "<group>"; };
 		B47746ED2BB4A74000EE8BEE /* tap_sendUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap_sendUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B4F6F4692E70236800928AC9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -98,7 +100,7 @@
 		B47746C82BB4A73D00EE8BEE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B47746C72BB4A73D00EE8BEE /* tap&send.app */,
+				B47746C72BB4A73D00EE8BEE /* iCursor.app */,
 				B47746DD2BB4A73F00EE8BEE /* tap&sendTests.xctest */,
 				B47746E72BB4A73F00EE8BEE /* tap&sendUITests.xctest */,
 			);
@@ -112,6 +114,7 @@
 				B47746CA2BB4A73D00EE8BEE /* AppDelegate.swift */,
 				B47746D32BB4A73F00EE8BEE /* Assets.xcassets */,
 				B47746D82BB4A73F00EE8BEE /* Info.plist */,
+				B4F6F4692E70236800928AC9 /* Localizable.xcstrings */,
 			);
 			path = "tap&send";
 			sourceTree = "<group>";
@@ -136,9 +139,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B47746C62BB4A73D00EE8BEE /* tap&send */ = {
+		B47746C62BB4A73D00EE8BEE /* iCursor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B47746F12BB4A74000EE8BEE /* Build configuration list for PBXNativeTarget "tap&send" */;
+			buildConfigurationList = B47746F12BB4A74000EE8BEE /* Build configuration list for PBXNativeTarget "iCursor" */;
 			buildPhases = (
 				B47746C32BB4A73D00EE8BEE /* Sources */,
 				B47746C42BB4A73D00EE8BEE /* Frameworks */,
@@ -151,9 +154,9 @@
 			fileSystemSynchronizedGroups = (
 				B49085902DE877C100B97565 /* Screens */,
 			);
-			name = "tap&send";
+			name = iCursor;
 			productName = "tap&send";
-			productReference = B47746C72BB4A73D00EE8BEE /* tap&send.app */;
+			productReference = B47746C72BB4A73D00EE8BEE /* iCursor.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B47746DC2BB4A73F00EE8BEE /* tap&sendTests */ = {
@@ -222,13 +225,14 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = B47746BE2BB4A73D00EE8BEE;
 			productRefGroup = B47746C82BB4A73D00EE8BEE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B47746C62BB4A73D00EE8BEE /* tap&send */,
+				B47746C62BB4A73D00EE8BEE /* iCursor */,
 				B47746DC2BB4A73F00EE8BEE /* tap&sendTests */,
 				B47746E62BB4A73F00EE8BEE /* tap&sendUITests */,
 			);
@@ -240,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4F6F46A2E70236800928AC9 /* Localizable.xcstrings in Resources */,
 				B47746D42BB4A73F00EE8BEE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,12 +296,12 @@
 /* Begin PBXTargetDependency section */
 		B47746DF2BB4A73F00EE8BEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B47746C62BB4A73D00EE8BEE /* tap&send */;
+			target = B47746C62BB4A73D00EE8BEE /* iCursor */;
 			targetProxy = B47746DE2BB4A73F00EE8BEE /* PBXContainerItemProxy */;
 		};
 		B47746E92BB4A73F00EE8BEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B47746C62BB4A73D00EE8BEE /* tap&send */;
+			target = B47746C62BB4A73D00EE8BEE /* iCursor */;
 			targetProxy = B47746E82BB4A73F00EE8BEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -361,6 +366,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -417,6 +423,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -434,8 +441,12 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app needs local network";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,6 +456,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -465,8 +477,12 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app needs local network";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -476,6 +492,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -583,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B47746F12BB4A74000EE8BEE /* Build configuration list for PBXNativeTarget "tap&send" */ = {
+		B47746F12BB4A74000EE8BEE /* Build configuration list for PBXNativeTarget "iCursor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B47746F22BB4A74000EE8BEE /* Debug */,

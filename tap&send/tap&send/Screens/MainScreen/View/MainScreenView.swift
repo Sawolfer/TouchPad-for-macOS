@@ -23,20 +23,18 @@ struct MainScreenView: View {
                     connectionStack
 //                    settingsButton
                     aboutAppButton
+                    commingSoonButton
                 }
                 .frame(width: 300)
                 Spacer()
 
-#if DEBUG
-                Toggle("For Test", isOn: $forTest)
-                    .frame(width: 150)
-                    .padding()
-                    .foregroundStyle(.yellow)
-                    .glass(cornerRadius: 20)
-#endif
+//                Toggle("For Test", isOn: $forTest)
+//                    .frame(width: 150)
+//                    .padding()
+//                    .foregroundStyle(.yellow)
+//                    .glass(cornerRadius: 20)
 //            pairingCode
             }
-            .dotsBackground()
             .sheet(isPresented: $viewModel.showConnectionSheet) {
                 ConnectionSheetView(viewModel: viewModel)
                     .presentationDetents([.medium])
@@ -57,12 +55,13 @@ struct MainScreenView: View {
             } message: {
                 Text(viewModel.pairingStatus)
             }
+            .dotsBackground()
         }
     }
 
 
     var welcomeLabel: some View {
-        Text("Welcome to Cursor app")
+        Text("Welcome to iCursor app")
             .foregroundStyle(.white)
             .font(.system(size: 60))
             .fontWeight(.black)
@@ -127,12 +126,27 @@ struct MainScreenView: View {
     }
 
     var aboutAppButton: some View {
-        Button {
-            print("About App")
+        NavigationLink {
+            AboutAppScreenView()
         } label: {
             HStack {
                 Image(systemName: "exclamationmark.circle.fill")
                 Text("About App")
+            }
+            .frame(maxWidth: .infinity)
+            .foregroundStyle(.yellow)
+            .padding()
+            .glass(cornerRadius: 20)
+        }
+    }
+
+    var commingSoonButton: some View {
+        NavigationLink {
+            CommingSoonView()
+        } label: {
+            HStack {
+                Image(systemName: "newspaper.fill")
+                Text("Comming Soon")
             }
             .frame(maxWidth: .infinity)
             .foregroundStyle(.yellow)

@@ -1,5 +1,5 @@
 //
-//  AboutAppScreenVeiw.swift
+//  CommingSoonView.swift
 //  tap&send
 //
 //  Created by Савва Пономарев on 09.09.2025.
@@ -7,22 +7,17 @@
 
 import SwiftUI
 
-struct AboutAppScreenView: View {
+struct CommingSoonView: View {
 
     @Environment(\.dismiss) var dissmiss
-    @Environment(\.openURL) private var openURL
 
     var body: some View {
         ScrollView{
             VStack {
                 Text(LocalizedStringKey(
-                    stringLiteral: (String(localized: "README")))
+                    stringLiteral: (String(localized: "CommingSoon")))
                 )
                 .foregroundStyle(.yellow)
-                .environment(\.openURL, OpenURLAction { url in
-                    openURL(url)
-                    return .handled
-                })
             }
         }
         .navigationBarBackButtonHidden()
@@ -39,20 +34,11 @@ struct AboutAppScreenView: View {
                 }
             })
             ToolbarItem(placement: .principal) {
-                Text("About App")
+                Text("Comming Soon")
                     .foregroundStyle(.yellow)
                     .fontWeight(.black)
             }
         }
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
-}
-
-// MARK: - Preview Provider
-struct AboutAboutScreenPreview: PreviewProvider {
-
-    static var previews: some View {
-        AboutAppScreenView()
-    }
-
 }

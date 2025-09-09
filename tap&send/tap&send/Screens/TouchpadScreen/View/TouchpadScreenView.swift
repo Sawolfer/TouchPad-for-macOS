@@ -34,6 +34,7 @@ struct TouchpadScreenView: View {
         .dotsBackground()
         .contentShape(Rectangle())
         .navigationBarBackButtonHidden()
+        .statusBarHidden()
     }
 
     var menuCircle: some View {

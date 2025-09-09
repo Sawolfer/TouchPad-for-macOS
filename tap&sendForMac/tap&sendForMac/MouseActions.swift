@@ -13,7 +13,6 @@ class MouseActions : NSViewController {
     
     func SignalMan(type : String){
         let components = type.split(separator: " ")
-        print(components)
         let action = ActionTypes(rawValue: String(components[0]))
         switch action{
         case .some(.left_mouse_click):
