@@ -1,0 +1,169 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "About App" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О приложении"
+          }
+        }
+      }
+    },
+    "Available Devices" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступные устройства"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отменить"
+          }
+        }
+      }
+    },
+    "Comming Soon" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скоро появится"
+          }
+        }
+      }
+    },
+    "CommingSoon" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Attention: some gestures are temporarily unavailable ⚠️**\n\nWe are constantly working on improving the application. In the current version, some gestures are still in development and will be added in future updates:\n\n**⌛ Coming soon:**\n- • Zoom gestures\n- • Object dragging\n- • Special gestures for applications\n- • Additional scrolling features\n- • Smoothness improvements\n\nFollow the application updates — we regularly add new features and gestures!\n\n**What's already available:**\n✅ Cursor movement\n✅ Left and right mouse buttons\n✅ Two-finger scrolling\n✅ Switching between desktops\n✅ Basic navigation gestures\n\nThank you for your understanding! We strive to make controlling your Mac even more convenient. 🚀"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Внимание: некоторые жесты временно недоступны ⚠️**\n\nМы постоянно работаем над улучшением приложения. В текущей версии некоторые жесты еще находятся в разработке и будут добавлены в следующих обновлениях:\n\n**⌛ Скоро появятся:**\n- • Масштабирование (зум) жестами\n- • Перетягивание объектов\n- • Специальные жесты для приложений\n- • Дополнительные возможности прокрутки\n- • Улучшение плавности\n\nСледите за обновлениями приложения — мы регулярно добавляем новые функции и жесты!\n\n**Что уже доступно:**\n✅ Движение курсора\n✅ Левая и правая кнопки мыши\n✅ Прокрутка двумя пальцами\n✅ Переключение между рабочими столами\n✅ Базовые жесты навигации\n\nСпасибо за понимание! Мы стремимся сделать управление вашим Mac еще удобнее. 🚀"
+          }
+        }
+      }
+    },
+    "Connect" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключиться"
+          }
+        }
+      }
+    },
+    "Enter pairing code" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите код сопряжения"
+          }
+        }
+      }
+    },
+    "Pair" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соединение"
+          }
+        }
+      }
+    },
+    "Pairing Required" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соединение запрошено"
+          }
+        }
+      }
+    },
+    "README" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**This is an application for controlling your Mac cursor**\n\n**Installation and Setup**\n\n**On Mac**:\n1. **Install the application** from App Store\n2. **Launch the application** - it will appear in the top menu bar\n3. **Click on the application icon** in the menu bar\n4. **Remember the connection code** that appears on the screen\n\n**On iPhone**:\n1. **Launch the application** on your phone\n2. **Tap the \"Connect\" button**\n3. **Select your Mac device** from the list of found devices\n4. **Enter the connection code** that you saw on your Mac screen\n\n**Usage**\nAfter successful connection:\n- Tap the **\"Start\"** button on iPhone\n- Control your Mac cursor using the touchpad interface on iPhone\n\n**Application Benefits**\n- ✅ **Perfect for extended monitors** - control your Mac from a distance\n- ✅ **Use iPhone as a trackpad** - when your Mac is closed or charging\n- ✅ **Wireless connection** - through local network\n- ✅ **Easy setup** - just a few simple steps\n\n**Enjoy using!** 🚀\n\n\n**Need help?**\nIf you encounter connection issues:\n1. Make sure both devices are on the same Wi-Fi network\n2. Restart the applications on both devices"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Это приложение для управления курсором вашего Mac**\n\n**Установка и настройка**\n\n**На Mac**:\n1. **Установите приложение** из App Store\n2. **Запустите приложение** - оно появится в верхней панели меню\n3. **Нажмите на иконку приложения** в панели меню\n4. **Запомните код подключения**, который появится на экране\n\n**На iPhone**:\n1. **Запустите приложение** на вашем телефоне\n2. **Нажмите кнопку \"Подключиться\"**\n3. **Выберите ваше устройство Mac** из списка найденных устройств\n4. **Введите код подключения**, который вы увидели на экране Mac\n\n**Использование**\nПосле успешного подключения:\n- Нажмите кнопку **\"Старт\"** на iPhone\n- Управляйте курсором Mac с помощью touchpad-интерфейса на iPhone\n\n**Преимущества приложения**\n- ✅ **Идеально для расширенных мониторов** - управляйте Mac на расстоянии\n- ✅ **Используйте iPhone как трекпад** - когда ваш Mac закрыт или на зарядке\n- ✅ **Беспроводное подключение** - через локальную сеть\n- ✅ **Простая настройка** - всего несколько простых шагов\n\n**Приятного использования!** 🚀\n\n\n**Нужна помощь?**\nЕсли возникли проблемы с подключением:\n1. Убедитесь, что оба устройства в одной сети Wi-Fi\n2. Перезапустите приложения на обоих устройствах"
+          }
+        }
+      }
+    },
+    "Searching for devices..." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск устройств…"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт"
+          }
+        }
+      }
+    },
+    "Welcome to iCursor app" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добро пожаловать в iCursor"
+          }
+        }
+      }
+    },
+    "Your Pairing Code:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш код сопряжения"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

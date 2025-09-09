@@ -19,6 +19,4 @@ enum ActionTypes : String {
     case four_fingers_spreading = "four_fingers_spreading"
     case pinch = "pinch"
     case spreadingString = "spreadingString"
-    
-    
 }

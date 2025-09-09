@@ -4,20 +4,14 @@
 <dict>
 	<key>NSBonjourServices</key>
 	<array>
-		<string>_mctest._tcp</string>
-		<string>_mctest._udp</string>
+		<string>_mcursor._tcp</string>
+		<string>_mcursor._udp</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiresFullScreen</key>
-	<true/>
-	<key>UIStatusBarHidden</key>
-	<false/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>

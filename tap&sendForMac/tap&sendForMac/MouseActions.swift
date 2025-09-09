@@ -8,9 +8,7 @@
 import Cocoa
 import CoreGraphics
 
-class MouseActions : NSViewController{
-    
-    
+class MouseActions : NSViewController {
     func MouseActions(){}
     
     func SignalMan(type : String){
@@ -73,6 +71,7 @@ class MouseActions : NSViewController{
         CGWarpMouseCursorPosition(newLocation)
         usleep(100)
     }
+
     func clickLeft(){
         var mousePos = NSEvent.mouseLocation
         mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
@@ -83,6 +82,7 @@ class MouseActions : NSViewController{
         usleep(500)
         mouseUp?.post(tap: .cghidEventTap)
     }
+
     func clickRight(){
         var mousePos = NSEvent.mouseLocation
         mousePos.y = NSHeight(NSScreen.screens[0].frame) - mousePos.y
@@ -93,8 +93,9 @@ class MouseActions : NSViewController{
         usleep(500)
         mouseUp?.post(tap: .cghidEventTap)
     }
+
     func longClick(){
-        
+
     }
     
     func scroll(velX: Int32, velY: Int32){
