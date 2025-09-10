@@ -15,19 +15,20 @@ struct AboutAppScreenView: View {
     var body: some View {
         ScrollView{
             VStack {
-                Text(LocalizedStringKey(
-                    stringLiteral: (String(localized: "README")))
-                )
-                .foregroundStyle(.yellow)
-                .environment(\.openURL, OpenURLAction { url in
-                    openURL(url)
-                    return .handled
-                })
+//                Text(LocalizedStringKey(
+//                    stringLiteral: (String(localized: "README")))
+//                )
+                Paragraph(header: (String(localized: "About-header")), text: (String(localized: "About-text")))
+                Paragraph(header: (String(localized: "On-Mac-header")), text: (String(localized: "On Mac-text")))
+                Paragraph(header: (String(localized: "On-iPhone-header")), text: (String(localized: "On iPhone-text")))
+                Paragraph(header: (String(localized: "Usage-header")), text: (String(localized: "Usage-text")))
+                Paragraph(header: (String(localized: "App-benefits-header")), text: (String(localized: "App Benefits-text")))
+                Paragraph(header: (String(localized: "Need-help?-header")), text: (String(localized: "Need Help?-text")))
             }
         }
         .navigationBarBackButtonHidden()
         .scrollIndicators(.hidden)
-        .padding(.horizontal)
+        .padding(.horizontal, 5)
         .dotsBackground()
         .toolbar {
             ToolbarItem(placement: .topBarLeading, content: {
@@ -47,6 +48,7 @@ struct AboutAppScreenView: View {
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }
+
 
 // MARK: - Preview Provider
 struct AboutAboutScreenPreview: PreviewProvider {

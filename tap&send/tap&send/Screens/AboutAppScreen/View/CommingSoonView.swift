@@ -14,16 +14,16 @@ struct CommingSoonView: View {
     var body: some View {
         ScrollView{
             VStack {
-                Text(LocalizedStringKey(
-                    stringLiteral: (String(localized: "CommingSoon")))
-                )
-                .foregroundStyle(.yellow)
+                Paragraph(header: (String(localized: "CommingSoon-generalInfo-header")), text: (String(localized: "CommingSoon-generalInfo-text")))
+                Paragraph(header: (String(localized: "CommingSoon-features-header")), text: (String(localized: "CommingSoon-features-text")))
+                Paragraph(header: (String(localized: "CommingSoon-available-now-header")), text: (String(localized: "CommingSoon-available-now-text")))
+                Paragraph(header: String(localized: "Gratitude-header"), text: (String(localized: "Gratitude-text")))
             }
         }
-        .navigationBarBackButtonHidden()
         .scrollIndicators(.hidden)
-        .padding(.horizontal)
+        .padding(.horizontal, 5)
         .dotsBackground()
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading, content: {
                 Button {
