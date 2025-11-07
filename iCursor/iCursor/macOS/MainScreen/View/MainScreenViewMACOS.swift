@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-
+#if os(macOS)
 struct MainScreenView: View {
-    @ObservedObject var viewModel: MultipeerViewModel
+    @ObservedObject var viewModel: MultipeerViewModelMACOS
 
     var body: some View {
         VStack {
@@ -60,3 +60,4 @@ struct MainScreenView: View {
         }
     }
 }
+#endif

@@ -22,6 +22,7 @@ struct SimpleBrowserApp: App {
             MainScreenView(
                 viewModel: viewModel
             )
+            .environment(\.colorScheme, .dark)
         } label: {
             Label("Cursor", systemImage: "cursorarrow.rays")
         }
