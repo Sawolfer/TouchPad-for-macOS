@@ -24,11 +24,11 @@ struct iCursorApp: App {
             .preferredColorScheme(.dark)
         }
 #elseif os(macOS)
-        WindowGroup {
-            TestView(
-                viewModel: viewModelMACOS
-            )
-        }
+//        WindowGroup {
+//            TestView(
+//                viewModel: viewModelMACOS
+//            )
+//        }
         MenuBarExtra {
             MainScreenView(
                 viewModel: viewModelMACOS
